@@ -27,8 +27,8 @@ public class Conexion {
         
         try {
             
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdperfilprofesional?user=root&password=");
+            Class.forName("org.postgresql.Driver");
+            con = DriverManager.getConnection("jdbc:postgresql://localhost:3306/bdperfilprofesional?user=root&password=");
                         
         } catch (Exception e) {
             
