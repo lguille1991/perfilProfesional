@@ -40,7 +40,6 @@ public class Conexion {
     public void desconectar() throws Exception
     {
         try {
-            
             if(con!=null)
             {
                 if(con.isClosed()==false)
@@ -51,11 +50,6 @@ public class Conexion {
             
         } catch (Exception e) {
             throw e;
-        }
-        
-    }
-    
-    
-    
-    
+        }   
+    } 
 }
