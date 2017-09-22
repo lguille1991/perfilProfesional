@@ -31,10 +31,8 @@ public class Conexion {
             con = DriverManager.getConnection("jdbc:postgresql://localhost:3306/bdperfilprofesional?user=root&password=");
                         
         } catch (Exception e) {
-            
             throw e;
-        }
-        
+        } 
     }
     
     public void desconectar() throws Exception
@@ -47,7 +45,6 @@ public class Conexion {
                     con.close();
                 }
             }
-            
         } catch (Exception e) {
             throw e;
         }   
