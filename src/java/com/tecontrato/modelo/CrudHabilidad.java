@@ -17,14 +17,12 @@ public class CrudHabilidad extends Conexion {
     public void insertarHabilidad(Habilidad hb) throws Exception
     {
         
-        try {
-            
+        try {           
             this.conectar();
-            String sql="insert into habilidad values(?,?)";
-            PreparedStatement pre = this.getCon().prepareStatement(sql);
-            
-            pre.setInt(1, hb.getIdHabilidad());
-            pre.setString(2, hb.getNombreHabilidad());
+            String sql="insert into habilidad(nombrehabilidad) values($)";
+            PreparedStatement pre = this.getCon().prepareStatement(sql);           
+            //pre.setInt(1, hb.getIdHabilidad());
+            pre.setString(1, hb.getNombreHabilidad());
             
             pre.executeUpdate();
             
@@ -34,7 +32,7 @@ public class CrudHabilidad extends Conexion {
         }
         finally
         {
-//            this.desconectar();
+           this.desconectar();
         }
                
     }

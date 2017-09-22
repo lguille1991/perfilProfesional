@@ -1,11 +1,14 @@
-
-package com.perfilprofesional.controlador;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.tecontrato.controlador;
 
 import com.tecontrato.modelo.CrudHabilidad;
 import com.tecontrato.modelo.Habilidad;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Geofredo
+ * @author Kevin López
  */
 public class ProcesarHabilidad extends HttpServlet {
 
@@ -30,34 +33,32 @@ public class ProcesarHabilidad extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        RequestDispatcher rd=null;
+            
         Habilidad hb=new Habilidad();
-        CrudHabilidad cpro=new CrudHabilidad();
+        CrudHabilidad cha=new CrudHabilidad();
         String val=null;
-        
         try{
-                hb.setIdHabilidad(Integer.parseInt(request.getParameter("idhabilidad")));
+                //hb.setIdHabilidad(Integer.parseInt(request.getParameter("idhabilidad")));
                 hb.setNombreHabilidad(request.getParameter("nombrehabilidad"));
                 
                 if(request.getParameter("btnGuardar") != null){
-                    cpro.insertarHabilidad(hb);
+                    cha.insertarHabilidad(hb);
                     val="Datos insertados correctamente";
                 }else if(request.getParameter("btnModificar") != null){
-                    cpro.modificarHabilidad(hb);;
+                    cha.modificarHabilidad(hb);;
                     val="Datos modificados correctamente";
                 }else if(request.getParameter("btnEliminar") != null){
-                   cpro.eliminarHabilidad(hb);
+                   cha.eliminarHabilidad(hb);
                    val="Datos eliminados correctamente";
                 }
-                rd=request.getRequestDispatcher("index.jsp");
+               // rd=request.getRequestDispatcher("index.jsp");
                 request.setAttribute("valor", val);
+                response.sendRedirect("habilidad.jsp");
             }catch(Exception e) {
                 request.setAttribute("error", e.toString());
             }
-            rd.forward(request, response);
-        
-        
-        
+            //rd.forward(request, response);
+            //response.sendRedirect("habilidad.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

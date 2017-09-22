@@ -23,7 +23,7 @@
     <div class="container">
          <div class="col-md-3"></div>
             <div class="col-md-6 media well" >
-            <form class="form-horizontal" action="procesarHabilidad">
+                <form class="form-horizontal" action="procesarHabilidad" method="">
                 <h3 class="text-center text-muted">HABILIDADES</h3>
                 <div class="form-group">
                   <label class="control-label col-sm-2" >Código:</label>
