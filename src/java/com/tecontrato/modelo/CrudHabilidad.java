@@ -2,101 +2,78 @@
 package com.tecontrato.modelo;
 
 import com.tecontrato.conexion.Conexion;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import static java.util.Collections.list;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 /**
- *
- * @author Geofredo
+ * Nombre      : CrudHabilidad
+ * Versión     : 2.0
+ * Fecha       : 21/09/2017
+ * CopyRight   : Programmer Group Services S.A de C.V
+ * @author     : Alexis, Kevin, Luis, María José, Geofredo
  */
+
 public class CrudHabilidad extends Conexion {
     
-    public void insertarHabilidad(Habilidad hb) throws Exception
-    {
-        
+     public void insertarHabilidad(Habilidad hb) throws Exception
+    {   
+        Conexion db = new Conexion();
+        Connection conexion = null;
         try {           
-            this.conectar();
-            String sql="insert into habilidad(nombrehabilidad) values($)";
-            PreparedStatement pre = this.getCon().prepareStatement(sql);           
-            //pre.setInt(1, hb.getIdHabilidad());
+            conexion = db.getConnection();
+            String sql="insert into habilidad(nombrehabilidad) values(?)";
+            PreparedStatement pre = conexion.prepareStatement(sql);           
             pre.setString(1, hb.getNombreHabilidad());
-            
-            pre.executeUpdate();
-            
+            pre.executeUpdate();    
         } catch (Exception e) {
             
             throw e;
-        }
-        finally
-        {
-           this.desconectar();
-        }
-               
+        }        
     }
-    
     
     public void eliminarHabilidad(Habilidad hb) throws Exception
     {
-        
-        try {
-            
-            this.conectar();
+        Conexion db = new Conexion();
+        Connection conexion = null;
+        try {           
+            conexion = db.getConnection();
             String sql="delete from habilidad where idhabilidad=?";
-            PreparedStatement pre = this.getCon().prepareStatement(sql);
-            
+            PreparedStatement pre = conexion.prepareStatement(sql);           
             pre.setInt(1, hb.getIdHabilidad());
-            
-            pre.executeUpdate();
-            
+            pre.executeUpdate();    
         } catch (Exception e) {
-        
+            
             throw e;
-        }
-        finally
-        {
-//            this.desconectar();
-        }
-        
+        }      
     }
     
-    public void modificarHabilidad(Habilidad hb) throws Exception
+   public void modificarHabilidad(Habilidad hb) throws Exception
     {
+        Conexion db = new Conexion();
+        Connection conexion = null;
         try {
-            this.conectar();
+            conexion = db.getConnection();
             String sql="update habilidad set nombrehabilidad=? where idhabilidad=?";
-            PreparedStatement pre = this.getCon().prepareStatement(sql);
-            
+            PreparedStatement pre = conexion.prepareStatement(sql); 
             pre.setString(1, hb.getNombreHabilidad());
-            pre.setInt(2, hb.getIdHabilidad());
-            
+            pre.setInt(2, hb.getIdHabilidad()); 
             pre.executeUpdate();
-            
         } catch (Exception e) {
-            
             throw e;
-        }
-        finally
-        {
-//            this.desconectar();
         }
     }
     
     public List<Habilidad>listahabilidades() throws Exception
     {
+        Conexion db = new Conexion();
+        Connection conexion = null;
         ResultSet res;
         List<Habilidad>lst= new ArrayList();
-        
         try {
-            
-            this.conectar();
+            conexion = db.getConnection();
             String sql="select * from habilidad";
-            PreparedStatement pre = this.getCon().prepareCall(sql);
-            
+            PreparedStatement pre = conexion.prepareCall(sql);
             res = pre.executeQuery();
-            
             while(res.next())
             {
                 Habilidad hb= new Habilidad();
@@ -107,10 +84,6 @@ public class CrudHabilidad extends Conexion {
         } catch (Exception e) {
             throw e;
         }
-        finally
-        {
-//            this.desconectar();
-        }
         return lst;
-    }   
+    }  
 }

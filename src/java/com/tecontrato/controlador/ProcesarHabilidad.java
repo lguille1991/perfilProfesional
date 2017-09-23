@@ -15,50 +15,45 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Kevin López
+ * Nombre      : ProcesarHabilidad
+ * Versión     : 2.0
+ * Fecha       : 21/09/2017
+ * CopyRight   : Programmer Group Services S.A de C.V
+ * @author     : Alexis, Kevin, Luis, María José, Geofredo
  */
+
 public class ProcesarHabilidad extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-            
-        Habilidad hb=new Habilidad();
-        CrudHabilidad cha=new CrudHabilidad();
-        String val=null;
-        try{
-                //hb.setIdHabilidad(Integer.parseInt(request.getParameter("idhabilidad")));
-                hb.setNombreHabilidad(request.getParameter("nombrehabilidad"));
-                
+        PrintWriter out = response.getWriter();   
+        Habilidad hb = new Habilidad();
+        CrudHabilidad cha = new CrudHabilidad();
+        String val = null;
+        try{    
                 if(request.getParameter("btnGuardar") != null){
+                    //Solo se insertan en el objeto (hb) los atributos que se piden en el crud
+                    hb.setNombreHabilidad(request.getParameter("nombrehabilidad"));
                     cha.insertarHabilidad(hb);
                     val="Datos insertados correctamente";
-                }else if(request.getParameter("btnModificar") != null){
-                    cha.modificarHabilidad(hb);;
-                    val="Datos modificados correctamente";
-                }else if(request.getParameter("btnEliminar") != null){
-                   cha.eliminarHabilidad(hb);
-                   val="Datos eliminados correctamente";
-                }
-               // rd=request.getRequestDispatcher("index.jsp");
+                }else{
+                    //Aqui se guarda nombre y id en el objeto(hb) porque son los 
+                    //atributos que se utilizan para modificar y eliminar en el crud
+                    hb.setIdHabilidad(Integer.parseInt(request.getParameter("idhabilidad")));
+                    hb.setNombreHabilidad(request.getParameter("nombrehabilidad"));
+                    if (request.getParameter("btnModificar") != null){  
+                        cha.modificarHabilidad(hb);;
+                        val="Datos modificados correctamente";
+                    }else if(request.getParameter("btnEliminar") != null){
+                        cha.eliminarHabilidad(hb);
+                        val="Datos eliminados correctamente";
+                    }
+                }       
                 request.setAttribute("valor", val);
                 response.sendRedirect("habilidad.jsp");
             }catch(Exception e) {
                 request.setAttribute("error", e.toString());
             }
-            //rd.forward(request, response);
-            //response.sendRedirect("habilidad.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
