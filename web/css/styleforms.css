@@ -1,0 +1,78 @@
+
+#panel-heading{
+    background: #1F618D;
+}
+.navbar, .dropdown-menu{
+background:rgb(31, 97, 141);
+opacity: 0.9;
+border: none;
+}
+
+.nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
+  border-bottom: 3px solid transparent;
+}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  border-bottom: 3px solid transparent;
+  background: none;
+}
+.navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
+ color: #fff;
+}
+.dropdown-menu{
+      -webkit-box-shadow: none;
+    box-shadow:none;
+}
+
+.nav li:hover, .nav li.active{
+  border-bottom: #85C1E9   3px solid;
+}
+.navbar-toggle .icon-bar{
+    color: #fff;
+}
+#colAccion{
+    width: 20%;
+}
+#colAccion>a{
+    text-decoration: none;
+}
+.form-control{
+    margin: 10px;
+}
+#headertbl{
+    background: #1F618D;
+    color: whitesmoke;
+}
+h2{text-align: center;}
+#tblMostrar{
+    margin-top: 20px;
+}
+#modalBody{
+    padding: 8px;
+}
+#botones{
+    text-align: center;
+    margin: 15px;
+}
+#top{
+    opacity: 0.8; margin-top: 20px;background: #1F618D; color: white;
+}
+
+#buscar {
+    margin-top:10px;
+      width: 150px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../imagenes/search.png') ;
+    background-position: 5px 6px; 
+    background-repeat: no-repeat;
+    padding: 10px 20px 10px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#buscar:focus {
+    width: 100%;
+}

@@ -71,7 +71,7 @@ public class CrudHabilidad extends Conexion {
         List<Habilidad>lst= new ArrayList();
         try {
             conexion = db.getConnection();
-            String sql="select * from habilidad";
+            String sql="select * from habilidad order by idhabilidad";
             PreparedStatement pre = conexion.prepareCall(sql);
             res = pre.executeQuery();
             while(res.next())

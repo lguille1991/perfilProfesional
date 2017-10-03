@@ -1,93 +1,108 @@
 <%-- 
-    /**
- * Nombre      : habilidad
- * Versión     : 2.0
- * Fecha       : 23/09/2017
- * CopyRight   : Programmer Group Services S.A de C.V
- * @author     : Alexis, Kevin, Luis, María José, Geofredo
- */
+    Document   : educacion
+    Created on : 10-01-2017, 06:59:17 PM
+    Author     : Maria Jose
 --%>
-<%@page import="java.util.*"%>
+
 <%@page import="com.tecontrato.modelo.*"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Versión compilada y comprimida del CSS de Bootstrap -->
+        <!--Hoja de estilo-->
+        <link rel="stylesheet" href="css/styleforms.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <!-- Tema opcional -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-        <!-- Versión compilada y comprimida del JavaScript de Bootstrap y Jquery -->
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Habilidad</title>
         <script Language='JavaScript'>
-            function cargar(codigo, nombreh){
-                document.frmHabilidad.idhabilidad.value = codigo;
-                document.frmHabilidad.nombrehabilidad.value = nombreh;
-            }
+          function cargar(codigo, nombreh)
+          {
+               $('#idhabilidad').val(codigo);
+               $('#nombrehabilidad').val(nombreh);
+          }
         </script>
-        <% if(request.getAttribute("valor") != null){ %>
-        <script>
-               alert('<%= request.getAttribute("valor") %>');
-        </script>
-        <% }  %>
-    </head>
-    <body>
-    <% CrudHabilidad cha = new CrudHabilidad(); %>
-    <jsp:include page="menu.jsp" />
-    <div class="container">
-         <div class="col-md-3"></div>
-            <div class="col-md-6 media well" >
-                <form action="procesarHabilidad" method="" class="form-horizontal" name="frmHabilidad">
-                <h3 class="text-center text-muted">HABILIDADES</h3>
-                <div class="form-group">
-                  <label class="control-label col-sm-2" >Código:</label>
-                  <div class="col-sm-10">
-                      <input type="text" class="form-control" name="idhabilidad" placeholder="Código" readonly="">
-                  </div>
+</head>
+<body id="home">
+<div class="container-fluid">
+<!--Barra de menú-->
+<jsp:include page="plantilla/menu.jsp" />
+<% CrudHabilidad cha = new CrudHabilidad(); %>
+<div class="row">
+    <!--Cambiar id modal-fade segun formulario con data-toggle="modal" data-target="#id" 
+    con esto se manda a llamar el modal  en las etiquetas <a></a> o <button></button> -->
+    <div class="modal fade" id="habilidad" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="panel-heading" >
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="panel-title" id="contactLabel">TeContrato.com</h4>
                 </div>
-                <div class="form-group">
-                  <label class="control-label col-sm-2">Nombre:</label>
-                  <div class="col-sm-10">          
-                      <input type="text" class="form-control" name="nombrehabilidad" placeholder="Nombre" required="">
-                  </div>
-                </div>
-                <div class="form-group">        
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary" name="btnGuardar">Guardar</button>
-                    <button type="submit" class="btn btn-primary" name="btnModificar">Modificar</button>
-                    <button type="submit" class="btn btn-danger" name="btnEliminar">Eliminar</button>
-                    <button type="reset" class="btn btn-primary" name="btnCancelar">Cancelar</button>
-                  </div>
-                </div>
-            </form>
+                 <!--Formulario-->
+                <form action="procesarHabilidad" method="post" name="frmHabilidad" >
+                    <div class="modal-body" id="modalBody">               
+                        <div class="row">
+                            <div class="col-md-2" ></div>
+                            <div class="col-md-8" >
+                                <h2>Habilidad</h2>
+                                <input type="text"  name="idhabilidad" id="idhabilidad"   class="form-control" placeholder="Código" readonly="true"/>
+                                <input type="text" name="nombrehabilidad" id="nombrehabilidad"  class="form-control" placeholder="Nombre"  required="true" />
+                                <div id="botones">
+                                    <button type="submit" name="btnGuardar" class="btn btn-primary fa fa-save"> Guardar</button>
+                                    <button type="submit"  name="btnModificar" class="btn btn-warning fa fa-undo"> Modificar</button>
+                                    <button type="submit"  name="btnEliminar" class="btn btn-danger fa fa-close"> Eliminar</button>
+                                    <button type="reset"  class="btn btn-primary fa fa-undo" title="Limpiar campos"></button>  
+                                </div>
+                            </div>
+                            <div class="col-md-2" ></div>
+                        </div>
+                    </div>         
+                </form> 
+                <!--End Formulario-->
             </div>
-         <div class="col-md-3"></div>
         </div>
-       <!--TABLA PARA MOSTRAR REGISTROS-->
-        <div class="container">           
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Código</th>
-                  <th>Habilidad</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%
-                  List<Habilidad> ls = cha.listahabilidades();
-                  for( Habilidad h:ls){
-                %>
-                <tr>
-                    <td><%= h.getIdHabilidad() %> </td>
-                    <td><%= h.getNombreHabilidad() %></td>
-                    <td><a href="javascript:cargar(<%= h.getIdHabilidad()%>,'<%=h.getNombreHabilidad() %>')">Seleccionar</a></td>
-                </tr>
-                <% } %>
-              </tbody>
-            </table>
-        </div>
-    </body>
+    </div><!--End modal-->
+</div><!--End Row-->
+ <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <h2>Habilidad</h2>
+        <!--Tabla para mostrar registros-->  
+        <a   class="btn btn-primary"  href="" data-toggle="modal" data-target="#habilidad"  onclick="cargar()" >Nuevo</a><br>
+        <input type="text" name="search"  id="buscar" placeholder="Busqueda">
+
+        <table class="w3-table-all " id="tblMostrar">
+            <thead >
+            <tr id="headertbl">
+               <th>Código</th>
+               <th>Habilidad</th>
+               <th>Acción</th>
+             </tr>
+           </thead>
+            <%
+             List<Habilidad> ls = cha.listahabilidades();
+             for( Habilidad h:ls){
+           %>
+           <tr>
+               <td><%= h.getIdHabilidad() %> </td>
+               <td><%= h.getNombreHabilidad() %></td>
+               <td id="colAccion" >
+                  <a   class="btn btn-primary" href="" data-toggle="modal" data-target="#habilidad" onclick="cargar(<%= h.getIdHabilidad()%>,'<%=h.getNombreHabilidad() %>')" >Seleccionar</a>
+               </td>
+           </tr>
+           <% } %>
+       </table>
+    </div>
+    <div class="col-md-1"></div>
+ </div><!--End Row-->
+<!--Footer-->
+<jsp:include page="plantilla/footer.jsp" />
+</div><!--End Container-->
+</body>
 </html>
