@@ -10,13 +10,13 @@ package com.tecontrato.modelo;
 public class CvHabilidad {
     private Curriculum curriculum;
     private Habilidad habilidad;
-    private String valoracion;
+    private int valoracion;
     private Nivel nivel;
 
     public CvHabilidad() {
     }
 
-    public CvHabilidad(Curriculum curriculum, Habilidad habilidad, String valoracion, Nivel nivel) {
+    public CvHabilidad(Curriculum curriculum, Habilidad habilidad, int valoracion, Nivel nivel) {
         this.curriculum = curriculum;
         this.habilidad = habilidad;
         this.valoracion = valoracion;
@@ -39,11 +39,11 @@ public class CvHabilidad {
         this.habilidad = habilidad;
     }
 
-    public String getValoracion() {
+    public int getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(String valoracion) {
+    public void setValoracion(int valoracion) {
         this.valoracion = valoracion;
     }
 
