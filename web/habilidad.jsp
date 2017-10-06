@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-confirmation.js"></script>
         <title>Habilidad</title>
         <script Language='JavaScript'>
           function cargar(codigo, nombreh)
@@ -27,6 +28,15 @@
                $('#idhabilidad').val(codigo);
                $('#nombrehabilidad').val(nombreh);
           }
+          
+          $(document).ready(function(){
+            $(" [data-toggle=confirmation]").confirmation({
+            rootSelector: "[data-toggle=confirmation]",
+            // other options
+            popout:true,
+            singleton:true
+            });
+          }); 
         </script>
 </head>
 <body id="home">
@@ -55,8 +65,12 @@
                                 <input type="text" name="nombrehabilidad" id="nombrehabilidad"  class="form-control" placeholder="Nombre"  required="true" />
                                 <div id="botones">
                                     <button type="submit" name="btnGuardar" class="btn btn-primary fa fa-save"> Guardar</button>
-                                    <button type="submit"  name="btnModificar" class="btn btn-warning fa fa-undo"> Modificar</button>
-                                    <button type="submit"  name="btnEliminar" class="btn btn-danger fa fa-close"> Eliminar</button>
+                                    <button type="submit" data-toggle="confirmation" name="btnModificar" class="btn btn-warning fa fa-undo" data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                                    data-btn-ok-class="btn-success" data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger"
+                                    data-title="¿Está seguro de modificar el registro?" data-content="Esto podría ser peligroso"> Modificar</button>
+                                    <button type="submit" data-toggle="confirmation" name="btnEliminar" class="btn btn-danger fa fa-close" data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                                    data-btn-ok-class="btn-success" data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger"
+                                    data-title="¿Está seguro de eliminar el registro?" data-content="Esto podría ser peligroso"> Eliminar</button>
                                     <button type="reset"  class="btn btn-primary fa fa-undo" title="Limpiar campos"></button>  
                                 </div>
                             </div>
