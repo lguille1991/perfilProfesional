@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tecontrato.controlador;
 
+import com.tecontrato.modelo.CrudEmpresa;
+import com.tecontrato.modelo.Empresa;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,30 +16,44 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProcesarEmpresa extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProcesarEmpresa</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProcesarEmpresa at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        PrintWriter out = response.getWriter();
+        
+        Empresa emp = new Empresa();
+        CrudEmpresa crem = new CrudEmpresa();
+        String val = null;
+        
+        try {
+            
+            emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
+            emp.setActividad(request.getParameter("txtActividad"));
+            emp.setDescripcion(request.getParameter("txtDescripcion"));
+            emp.setEmail(request.getParameter("txtEmail"));
+            emp.setTelefono(request.getParameter("txtTelefono"));
+            emp.setNombreEmpresa(request.getParameter("txtNombreEmpresa"));
+            
+            
+            if(request.getParameter("btnGuardar")!=null)
+            {
+                crem.insertarEmpresa(emp);
+                val="Datos insertados correctamente";
+            }else if(request.getParameter("btnModificar")!=null)
+            {
+                crem.modificarEmpresa(emp);
+                val="Datos modificados correctamente";
+            }else if(request.getParameter("btnEliminar")!=null)
+            {
+                crem.eliminarEmpresa(emp);
+                val="Datos eliminados correctamente";
+            }
+            
+            request.setAttribute("valor", val);
+            response.sendRedirect("index.jsp");
+     } catch (Exception e) {
+         request.setAttribute("ERROR", e.toString());
+     }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

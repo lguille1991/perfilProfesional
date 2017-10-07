@@ -25,7 +25,7 @@ public class CrudOferta extends Conexion{
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, ofe.getArea().getIdArea());
             pre.setInt(2, ofe.getCargo().getIdCargo());
-            pre.setInt(3, ofe.getNivelDepartamento().getIdNivelExperiencia());
+            pre.setInt(3, ofe.getNivelExperiencia().getIdNivelExperiencia());
             pre.setInt(4, ofe.getTipoContratacion().getIdTipoContratacion());
             pre.setInt(5, ofe.getDepartamento().getIdDepto());
             pre.setInt(6, ofe.getEmpresa().getIdEmpresa());
@@ -54,7 +54,7 @@ public class CrudOferta extends Conexion{
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, ofe.getArea().getIdArea());
             pre.setInt(2, ofe.getCargo().getIdCargo());
-            pre.setInt(3, ofe.getNivelDepartamento().getIdNivelExperiencia());
+            pre.setInt(3, ofe.getNivelExperiencia().getIdNivelExperiencia());
             pre.setInt(4, ofe.getTipoContratacion().getIdTipoContratacion());
             pre.setInt(5, ofe.getDepartamento().getIdDepto());
             pre.setInt(6, ofe.getEmpresa().getIdEmpresa());

@@ -1,10 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tecontrato.controlador;
 
+import com.tecontrato.modelo.Cargo;
+import com.tecontrato.modelo.CrudCvCargo;
+import com.tecontrato.modelo.Curriculum;
+import com.tecontrato.modelo.CvCargo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,35 +12,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Alexis
+ * Nombre      : ProcesarCargo
+ * Versión     : 1.0
+ * Fecha       : 06/10/2017
+ * CopyRight   : Programmer Group Services S.A de C.V
+ * @author     : Alexis, Kevin, Luis, María José, Geofredo
  */
 public class ProcesarCvCargo extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+ protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProcesarCvCargo</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProcesarCvCargo at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        PrintWriter out = response.getWriter();
+        
+        CvCargo cc = new CvCargo();
+        CrudCvCargo crcvca = new CrudCvCargo();
+        String val = null;
+        
+        try {
+            
+            cc.setCurriculum(new Curriculum(Integer.parseInt(request.getParameter("txtIdCurriculum"))));
+            cc.setCargo(new Cargo(Integer.parseInt(request.getParameter("txtIdCargo"))));
+            if(request.getParameter("btnGuardar")!=null)
+            {
+                crcvca.insertarCvCargo(cc);
+                val="Datos insertados correctamente";
+            }else if(request.getParameter("btnModificar")!=null)
+            {
+                crcvca.modificarCvCargo(cc);
+                val="Datos modificados correctamente";
+            }else if(request.getParameter("btnEliminar")!=null)
+            {
+                crcvca.eliminarCvCargo(cc);
+                val="Datos eliminados correctamente";
+            }
+            
+            request.setAttribute("valor", val);
+            response.sendRedirect("index.jsp");
+     } catch (Exception e) {
+         request.setAttribute("ERROR", e.toString());
+     }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

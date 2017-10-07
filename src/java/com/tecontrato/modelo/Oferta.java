@@ -13,7 +13,7 @@ public class Oferta {
 private int idOferta;
 private Area area;
 private Cargo cargo;
-private NivelExperiencia nivelDepartamento;
+private NivelExperiencia nivelExperiencia;
 private TipoContratacion tipoContratacion;
 private Departamento departamento;
 private Empresa empresa;
@@ -27,11 +27,11 @@ private int edadMax;
     public Oferta() {
     }
 
-    public Oferta(int idOferta, Area area, Cargo cargo, NivelExperiencia nivelDepartamento, TipoContratacion tipoContratacion, Departamento departamento, Empresa empresa, String nombre, int vacantes, String descripcion, int edadMin, int edadMax) {
+    public Oferta(int idOferta, Area area, Cargo cargo, NivelExperiencia nivelExperiencia, TipoContratacion tipoContratacion, Departamento departamento, Empresa empresa, String nombre, int vacantes, String descripcion, int edadMin, int edadMax) {
         this.idOferta = idOferta;
         this.area = area;
         this.cargo = cargo;
-        this.nivelDepartamento = nivelDepartamento;
+        this.nivelExperiencia = nivelExperiencia;
         this.tipoContratacion = tipoContratacion;
         this.departamento = departamento;
         this.empresa = empresa;
@@ -41,6 +41,8 @@ private int edadMax;
         this.edadMin = edadMin;
         this.edadMax = edadMax;
     }
+
+    
 
     public Oferta(int idOferta) {
         this.idOferta = idOferta;
@@ -71,12 +73,12 @@ private int edadMax;
         this.cargo = cargo;
     }
 
-    public NivelExperiencia getNivelDepartamento() {
-        return nivelDepartamento;
+    public NivelExperiencia getNivelExperiencia() {
+        return nivelExperiencia;
     }
 
-    public void setNivelDepartamento(NivelExperiencia nivelDepartamento) {
-        this.nivelDepartamento = nivelDepartamento;
+    public void setNivelExperiencia(NivelExperiencia nivelExperiencia) {
+        this.nivelExperiencia = nivelExperiencia;
     }
 
     public TipoContratacion getTipoContratacion() {
