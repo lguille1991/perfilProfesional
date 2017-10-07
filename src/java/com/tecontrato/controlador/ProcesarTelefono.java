@@ -5,6 +5,9 @@
  */
 package com.tecontrato.controlador;
 
+import com.tecontrato.modelo.Candidato;
+import com.tecontrato.modelo.CrudTelefono;
+import com.tecontrato.modelo.Telefono;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,8 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Alexis
+ * Nombre      : ProcesarTelefono
+ * Versión     : 1.0
+ * Fecha       : 07 /10/2017
+ * CopyRight   : Programmer Group Services S.A de C.V
+ * @author     : Alexis, Kevin, Luis, María José, Geofredo
  */
 public class ProcesarTelefono extends HttpServlet {
 
@@ -30,18 +36,36 @@ public class ProcesarTelefono extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProcesarTelefono</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProcesarTelefono at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        PrintWriter out = response.getWriter();
+        
+        Telefono tel = new Telefono();
+        CrudTelefono crte = new CrudTelefono();
+        String val = null;
+        
+        try {
+            
+            tel.setCandidato(new Candidato(Integer.parseInt(request.getParameter("txtIdCandidato"))));
+            tel.setTelefono(request.getParameter("txtTelefono"));
+            
+            if(request.getParameter("btnGuardar")!=null)
+            {
+                crte.insertarTelefono(tel);
+                val="Datos insertados correctamente";
+            }else if(request.getParameter("btnModificar")!=null)
+            {
+                crte.modificarTelefono(tel);
+                val="Datos modificados correctamente";
+            }else if(request.getParameter("btnEliminar")!=null)
+            {
+                crte.eliminarTelefono(tel);
+                val="Datos eliminados correctamente";
+            }
+            
+            request.setAttribute("valor", val);
+            response.sendRedirect("index.jsp");
+     } catch (Exception e) {
+         request.setAttribute("ERROR", e.toString());
+     }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

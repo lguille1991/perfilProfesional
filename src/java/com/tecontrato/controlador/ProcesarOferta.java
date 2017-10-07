@@ -1,10 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tecontrato.controlador;
 
+import com.tecontrato.modelo.Area;
+import com.tecontrato.modelo.Cargo;
+import com.tecontrato.modelo.CrudOferta;
+import com.tecontrato.modelo.Departamento;
+import com.tecontrato.modelo.Empresa;
+import com.tecontrato.modelo.NivelExperiencia;
+import com.tecontrato.modelo.Oferta;
+import com.tecontrato.modelo.TipoContratacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,35 +17,58 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Alexis
+ * Nombre      : ProcesarCargo
+ * Versión     : 1.0
+ * Fecha       : 06/10/2017
+ * CopyRight   : Programmer Group Services S.A de C.V
+ * @author     : Alexis, Kevin, Luis, María José, Geofredo
  */
 public class ProcesarOferta extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProcesarOferta</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProcesarOferta at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        PrintWriter out = response.getWriter();
+        
+        Oferta ofe = new Oferta();
+        CrudOferta crof = new CrudOferta();
+        String val = null;
+        
+        try {
+            
+            ofe.setIdOferta(Integer.parseInt(request.getParameter("txtIdOferta")));
+            ofe.setArea(new Area(Integer.parseInt(request.getParameter("txtIdArea"))));
+            ofe.setCargo(new Cargo(Integer.parseInt(request.getParameter("txtIdCargo"))));
+            ofe.setNivelExperiencia(new NivelExperiencia(Integer.parseInt(request.getParameter("txtIdNivelExperiencia"))));
+            ofe.setTipoContratacion(new TipoContratacion(Integer.parseInt(request.getParameter("txtIdTipoContratacion"))));
+            ofe.setDepartamento(new Departamento(Integer.parseInt(request.getParameter("txtIdDepartamento"))));
+            ofe.setEmpresa(new Empresa(Integer.parseInt(request.getParameter("txtIdEmpresa"))));
+            ofe.setNombre(request.getParameter("txtNombre"));
+            ofe.setVacantes(Integer.parseInt(request.getParameter("txtVacantes")));
+            ofe.setDescripcion(request.getParameter("txtDescripcion"));
+            ofe.setEdadMin(Integer.parseInt("txtEdadMin"));
+            ofe.setEdadMax(Integer.parseInt(request.getParameter("txtEdadMax")));
+            
+            
+            if(request.getParameter("btnGuardar")!=null)
+            {
+                crof.insertarOferta(ofe);
+                val="Datos insertados correctamente";
+            }else if(request.getParameter("btnModificar")!=null)
+            {
+                crof.modificarOferta(ofe);
+                val="Datos modificados correctamente";
+            }else if(request.getParameter("btnEliminar")!=null)
+            {
+                crof.eliminarOferta(ofe);
+                val="Datos eliminados correctamente";
+            }
+            
+            request.setAttribute("valor", val);
+            response.sendRedirect("index.jsp");
+     } catch (Exception e) {
+         request.setAttribute("ERROR", e.toString());
+     }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,5 +1,9 @@
 package com.tecontrato.controlador;
 
+import com.tecontrato.modelo.Candidato;
+import com.tecontrato.modelo.CrudCandidato;
+import com.tecontrato.modelo.Departamento;
+import com.tecontrato.modelo.Genero;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -8,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Nombre      : Procesar Área
+ * Nombre      : ProcesarCandidato
  * Versión     : 1.0
  * Fecha       : 06/10/2017
  * CopyRight   : Programmer Group Services S.A de C.V
@@ -16,30 +20,45 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProcesarCandidato extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProcesarCandidato</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProcesarCandidato at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        PrintWriter out = response.getWriter();
+        
+        
+            Candidato can = new Candidato();
+            CrudCandidato crca = new CrudCandidato();
+            String val = null;
+         try {
+            
+            can.setIdCandidato(Integer.parseInt(request.getParameter("txtIdCandidaro")));
+            can.setDepto(new Departamento(Integer.parseInt(request.getParameter("txtIdDepto"))));
+            can.setGenero(new Genero(Integer.parseInt(request.getParameter("genero"))));
+            can.setNombre(request.getParameter("txtNombre"));
+            can.setNacionalidad(request.getParameter("txtNacionalidad"));
+            can.setFechaNacimiento(request.getParameter("txtFechaNacimiento"));
+            can.setDireccion(request.getParameter("txtDireccion"));
+            can.setFoto(request.getParameter("foto"));
+            
+            if(request.getParameter("btnGuardar")!=null)
+            {
+                crca.insertarCandidato(can);
+                val="Datos insertados correctamente";
+            }else if(request.getParameter("btnModificar")!=null)
+            {
+                crca.modificarCandidato(can);
+                val="Datos modificados correctamente";
+            }else if(request.getParameter("btnEliminar")!=null)
+            {
+                crca.eliminarCandidato(can);
+                val="Datos eliminados correctamente";
+            }
+            
+            request.setAttribute("valor", val);
+            response.sendRedirect("habilidad.jsp");
+            } catch (Exception e) {
+                request.setAttribute("ERROR", e.toString());
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
