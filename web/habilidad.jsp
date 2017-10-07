@@ -1,5 +1,5 @@
 <%-- 
-    Document   : educacion
+    Document   : habilidad
     Created on : 10-01-2017, 06:59:17 PM
     Author     : Maria Jose
 --%>
