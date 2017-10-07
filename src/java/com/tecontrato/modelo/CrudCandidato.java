@@ -157,5 +157,30 @@ public class CrudCandidato extends Conexion {
         return lst;
     }
     
-    
+    public List<Genero>listaGenero() throws Exception
+    {
+        Conexion db = new Conexion();
+        Connection conexion = null;
+        ResultSet res;
+        List<Genero>lst= new ArrayList();
+        try 
+        {
+            conexion = db.getConnection();
+            String sql="select * from genero";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            res=pre.executeQuery();
+            while(res.next())
+            {               
+                Genero ge=new Genero();
+                ge.setIdGenero(res.getInt("idgenero"));
+                ge.setGenero(res.getString("genero"));
+                lst.add(ge);
+            }
+        } 
+        catch (Exception e) 
+        {
+            throw e;
+        }
+        return lst;
+    }
 }
