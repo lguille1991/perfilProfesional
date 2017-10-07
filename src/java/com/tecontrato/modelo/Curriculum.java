@@ -21,6 +21,11 @@ public class Curriculum {
         this.nivelExperiencia = nivelExperiencia;
     }
 
+    public Curriculum(int idCurriculum) {
+        this.idCurriculum = idCurriculum;
+    }
+    
+
     public int getIdCurriculum() {
         return idCurriculum;
     }

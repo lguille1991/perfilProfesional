@@ -19,6 +19,11 @@ public class Area {
         this.nombreArea = nombreArea;
     }
 
+    public Area(int idArea) {
+        this.idArea = idArea;
+    }
+    
+
     public int getIdArea() {
         return idArea;
     }

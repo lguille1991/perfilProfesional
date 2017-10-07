@@ -19,6 +19,11 @@ public class Cargo {
         this.nombreCargo = nombreCargo;
     }
 
+    public Cargo(int idCargo) {
+        this.idCargo = idCargo;
+    }
+    
+
     public int getIdCargo() {
         return idCargo;
     }

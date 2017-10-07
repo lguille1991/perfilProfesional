@@ -19,6 +19,11 @@ public class NivelExperiencia {
         this.nombreNivelExperiencia = nombreNivelExperiencia;
     }
 
+    public NivelExperiencia(int idNivelExperiencia) {
+        this.idNivelExperiencia = idNivelExperiencia;
+    }
+    
+
     public int getIdNivelExperiencia() {
         return idNivelExperiencia;
     }

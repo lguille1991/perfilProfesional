@@ -21,6 +21,11 @@ public class Idioma {
         this.nombreIdioma = nombreIdioma;
     }
 
+    public Idioma(int idIdioma) {
+        this.idIdioma = idIdioma;
+    }
+    
+
     public int getIdIdioma() {
         return idIdioma;
     }

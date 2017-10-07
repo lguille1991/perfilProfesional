@@ -19,6 +19,11 @@ public class Genero {
         this.genero = genero;
     }
 
+    public Genero(int idGenero) {
+        this.idGenero = idGenero;
+    }
+    
+
     public int getIdGenero() {
         return idGenero;
     }

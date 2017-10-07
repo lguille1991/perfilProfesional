@@ -19,6 +19,11 @@ public class Nivel {
         this.nivel = nivel;
     }
 
+    public Nivel(int idNivel) {
+        this.idNivel = idNivel;
+    }
+    
+
     public int getIdNivel() {
         return idNivel;
     }

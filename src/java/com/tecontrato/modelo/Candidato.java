@@ -32,6 +32,11 @@ public class Candidato {
         this.foto = foto;
     }
 
+    public Candidato(int idCandidato) {
+        this.idCandidato = idCandidato;
+    }
+    
+
     public int getIdCandidato() {
         return idCandidato;
     }

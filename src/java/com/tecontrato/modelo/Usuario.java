@@ -23,6 +23,11 @@ public class Usuario {
         this.clave = clave;
     }
 
+    public Usuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+
     public int getIdUsuario() {
         return idUsuario;
     }

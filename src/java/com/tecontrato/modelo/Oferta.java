@@ -42,6 +42,11 @@ private int edadMax;
         this.edadMax = edadMax;
     }
 
+    public Oferta(int idOferta) {
+        this.idOferta = idOferta;
+    }
+    
+
     public int getIdOferta() {
         return idOferta;
     }

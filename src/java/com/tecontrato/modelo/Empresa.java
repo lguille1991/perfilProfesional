@@ -29,6 +29,11 @@ public class Empresa {
         this.nombreEmpresa = nombreEmpresa;
     }
 
+    public Empresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+    
+
     public int getIdEmpresa() {
         return idEmpresa;
     }

@@ -19,6 +19,11 @@ public class TipoContratacion {
         this.nombreContratacion = nombreContratacion;
     }
 
+    public TipoContratacion(int idTipoContratacion) {
+        this.idTipoContratacion = idTipoContratacion;
+    }
+    
+
     public int getIdTipoContratacion() {
         return idTipoContratacion;
     }

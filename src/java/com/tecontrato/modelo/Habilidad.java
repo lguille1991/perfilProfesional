@@ -21,6 +21,11 @@ public class Habilidad {
         this.nombreHabilidad = nombreHabilidad;
     }
 
+    public Habilidad(int idHabilidad) {
+        this.idHabilidad = idHabilidad;
+    }
+    
+
     public int getIdHabilidad() {
         return idHabilidad;
     }
