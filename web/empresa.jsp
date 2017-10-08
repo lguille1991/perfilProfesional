@@ -102,45 +102,6 @@
                             </form>
                     </div>
                 </div>
-            
-                <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
-                    <h2>Empresa</h2>
-                    <!--Tabla para mostrar registros-->  
-                    <a   class="btn btn-primary"  href="" data-toggle="modal" data-target="#habilidad"  onclick="cargar()" >Nuevo</a><br>
-                    <input type="text" name="search"  id="buscar" placeholder="Busqueda">
-
-                    <table class="w3-table-all " id="tblMostrar">
-                        <thead >
-                        <tr id="headertbl">
-                           <th>Código</th>
-                           <th>Habilidad</th>
-                           <th>Acción</th>
-                           <th>Email</th>
-                           <th>Teléfono</th>
-                           <th>Crear usuario</th>
-                         </tr>
-                       </thead>
-                        <%
-                         List<Empresa> ls = cemp.mostrarEmpresa();
-                         for( Empresa e:ls){
-                       %>
-                       <tr>
-                           <td><%= e.getIdEmpresa()%> </td>
-                           <td><%= e.getActividad() %> </td>
-                           <td><%= e.getDescripcion() %> </td>
-                           <td><%= e.getEmail() %> </td>
-                           <td><%= e.getTelefono() %></td>
-                           <td id="colAccion" >
-                              <a class="btn btn-primary" href="" data-toggle="modal" data-target="#habilidad" onclick="cargar(<%= e.getIdEmpresa()%>,'<%=e.getActividad()%>', '<%=e.getDescripcion() %>', '<%=e.getEmail() %>', '<%=e.getTelefono() %>')" >Seleccionar</a>
-                           </td>
-                       </tr>
-                       <% } %>
-                   </table>
-                </div>
-                <div class="col-md-1"></div>
-             </div><!--End Row-->
         </div>      
         <jsp:include page="plantilla/footer.jsp"/> 
     </body>
