@@ -20,7 +20,7 @@
           
         </script>
     </head>
-    <body class="bodyFormulario">
+    <body class="bodyFormulario" id="home">
         <div class="container-fluid">
             <jsp:include page="plantilla/menu.jsp" />
             
@@ -69,7 +69,7 @@
                 
                 <div class="row main">
                     <div class="main-login main-center">
-                    <h2>Empresa</h2>
+                            <h3><strong>EMPRESA</strong></h3>
                             <form class="" method="post" action="#">
 
                                     <div class="form-group">
