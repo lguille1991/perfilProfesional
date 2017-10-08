@@ -23,61 +23,17 @@
     <body class="bodyFormulario" id="home">
         <div class="container-fluid">
             <jsp:include page="plantilla/menu.jsp" />
-            
-                <div class="row">
-                    <div class="modal fade" id="empresa" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading" id="panel-heading" >
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="panel-title" id="contactLabel">TeContrato.com</h4>
-                                </div>
-                                 <!--Formulario-->
-                                <form action="procesarUsuarioEmpresa" method="post" name="frmUsuarioEmpresa" >
-                                    <div class="modal-body" id="modalBody">               
-                                        <div class="row">
-                                            <div class="col-md-2" ></div>
-                                            <div class="col-md-8" >
-                                                <h2>Usuario</h2>
-                                                <label for="txtUsuario" class="control-label">Usuario</label>
-                                                <input type="text"  name="txtUsuario" id="txtUsuario"   class="form-control" placeholder="Usuario" required="true"/>
-                                                <br>
-                                                <label for="txtUsuario" class="control-label">Contraseña</label>
-                                                <input type="password" name="txtPass" id="txtPass"  class="form-control" placeholder="Contraseña" required="true" />
-                                                <br>
-                                                <label for="txtUsuario" class="control-label">Repetir Contraseña</label>
-                                                <input type="password" name="txtPass2" id="txtPass2"  class="form-control" placeholder="Confirmar contraseña" required="true" />
-                                                <br>
-                                                <div id="botones">
-                                                    <button type="submit" class="btn btn-success" name="btnGuardar">
-                                                        <span class="glyphicon glyphicon-floppy-saved"></span> Guardar
-                                                    </button>
-                                                    <button type="reset" class="btn btn-primary">
-                                                        <span class="glyphicon glyphicon-share-alt"></span> Cancelar
-                                                    </button> 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2" ></div>
-                                        </div>
-                                    </div>         
-                                </form> 
-                                <!--End Formulario-->
-                            </div>
-                        </div>
-                    </div><!--End modal-->
-                </div>
                 
                 <div class="row main">
                     <div class="main-login main-center">
                             <h3><strong>EMPRESA</strong></h3>
-                            <form class="" method="post" action="#">
-
+                            <form class="" method="GET" action="procesarEmpresa">
                                     <div class="form-group">
-                                            <label for="name" class="cols-sm-2 control-label">Código</label>
+                                            <label for="txtIdEmpresa" class="cols-sm-2 control-label">Código</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código"/>
+                                                            <input type="text" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -117,25 +73,29 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtTelefono" id="txtTelefono"  placeholder="Ingrese el numero telefónico"/>
+                                                            <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono"  placeholder="Ingrese el numero telefónico"/>
                                                     </div>
                                             </div>
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="confirm" class="cols-sm-2 control-label">Nombre</label>
+                                            <label for="txtNombreEmpresa" class="cols-sm-2 control-label">Nombre</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtNombre" id="txtNombre"  placeholder="Nombre de la empresa"/>
+                                                            <input type="text" class="form-control" name="txtNombreEmpresa" id="txtNombreEmpresa"  placeholder="Nombre de la empresa"/>
                                                     </div>
                                             </div>
                                     </div>
 
-                                    <div class="form-group ">
-                                            <a href="" data-toggle="modal" data-target="#empresa" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
+                                    <div id="botones">
+                                        <button type="submit" class="btn btn-success" name="btnGuardar">
+                                            <span class="glyphicon glyphicon-floppy-saved"></span> Guardar
+                                        </button>
+                                        <button type="reset" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-share-alt"></span> Cancelar
+                                        </button> 
                                     </div>
-
                             </form>
                     </div>
                 </div>

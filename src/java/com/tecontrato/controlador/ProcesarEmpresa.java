@@ -27,7 +27,6 @@ public class ProcesarEmpresa extends HttpServlet {
         
         try {
             
-            emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
             emp.setActividad(request.getParameter("txtActividad"));
             emp.setDescripcion(request.getParameter("txtDescripcion"));
             emp.setEmail(request.getParameter("txtEmail"));
@@ -37,10 +36,12 @@ public class ProcesarEmpresa extends HttpServlet {
             
             if(request.getParameter("btnGuardar")!=null)
             {
+                emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
                 crem.insertarEmpresa(emp);
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
                 crem.modificarEmpresa(emp);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
