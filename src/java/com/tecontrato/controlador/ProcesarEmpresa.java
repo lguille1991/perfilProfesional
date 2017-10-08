@@ -51,7 +51,7 @@ public class ProcesarEmpresa extends HttpServlet {
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("empresa.jsp");
+            response.sendRedirect("usuarioEmpresa.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

@@ -42,7 +42,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="email" class="cols-sm-2 control-label">Actividad</label>
+                                            <label for="txtActividad" class="cols-sm-2 control-label">Actividad</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -52,7 +52,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="username" class="cols-sm-2 control-label">Descripción</label>
+                                            <label for="txtDescripcion" class="cols-sm-2 control-label">Descripción</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-file" aria-hidden="true"></i></span>
@@ -62,7 +62,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="password" class="cols-sm-2 control-label">Email</label>
+                                            <label for="txtEmail" class="cols-sm-2 control-label">Email</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
@@ -72,7 +72,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                            <label for="confirm" class="cols-sm-2 control-label">Teléfono</label>
+                                            <label for="txtTelefono" class="cols-sm-2 control-label">Teléfono</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i></span>
@@ -92,7 +92,7 @@
                                     </div>
 
                                     <div id="botones">
-                                        <button type="submit" class="btn btn-success" name="btnGuardar" target="usuario.jsp">
+                                        <button type="submit" class="btn btn-success" name="btnGuardar">
                                             <span class="glyphicon glyphicon-floppy-saved"></span> Guardar
                                         </button>
                                         <button type="reset" class="btn btn-primary">
@@ -119,7 +119,7 @@
                            <th>Acción</th>
                            <th>Email</th>
                            <th>Teléfono</th>
-                           <th>Acción</th>
+                           <th>Crear usuario</th>
                          </tr>
                        </thead>
                         <%
