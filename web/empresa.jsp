@@ -4,6 +4,7 @@
     Author     : lguil
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="com.tecontrato.modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,8 +23,10 @@
     </head>
     <body class="bodyFormulario" id="home">
         <div class="container-fluid">
-            <jsp:include page="plantilla/menu.jsp" />
-                
+            <jsp:include page="plantilla/menu.jsp"/>
+            <%
+                CrudEmpresa cemp = new CrudEmpresa();
+            %>
                 <div class="row main">
                     <div class="main-login main-center">
                             <h3><strong>EMPRESA</strong></h3>
@@ -33,7 +36,7 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código"/>
+                                                            <input type="text" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código" readonly="true"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -89,7 +92,7 @@
                                     </div>
 
                                     <div id="botones">
-                                        <button type="submit" class="btn btn-success" name="btnGuardar">
+                                        <button type="submit" class="btn btn-success" name="btnGuardar" target="usuario.jsp">
                                             <span class="glyphicon glyphicon-floppy-saved"></span> Guardar
                                         </button>
                                         <button type="reset" class="btn btn-primary">
@@ -99,6 +102,45 @@
                             </form>
                     </div>
                 </div>
+            
+                <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <h2>Empresa</h2>
+                    <!--Tabla para mostrar registros-->  
+                    <a   class="btn btn-primary"  href="" data-toggle="modal" data-target="#habilidad"  onclick="cargar()" >Nuevo</a><br>
+                    <input type="text" name="search"  id="buscar" placeholder="Busqueda">
+
+                    <table class="w3-table-all " id="tblMostrar">
+                        <thead >
+                        <tr id="headertbl">
+                           <th>Código</th>
+                           <th>Habilidad</th>
+                           <th>Acción</th>
+                           <th>Email</th>
+                           <th>Teléfono</th>
+                           <th>Acción</th>
+                         </tr>
+                       </thead>
+                        <%
+                         List<Empresa> ls = cemp.mostrarEmpresa();
+                         for( Empresa e:ls){
+                       %>
+                       <tr>
+                           <td><%= e.getIdEmpresa()%> </td>
+                           <td><%= e.getActividad() %> </td>
+                           <td><%= e.getDescripcion() %> </td>
+                           <td><%= e.getEmail() %> </td>
+                           <td><%= e.getTelefono() %></td>
+                           <td id="colAccion" >
+                              <a class="btn btn-primary" href="" data-toggle="modal" data-target="#habilidad" onclick="cargar(<%= e.getIdEmpresa()%>,'<%=e.getActividad()%>', '<%=e.getDescripcion() %>', '<%=e.getEmail() %>', '<%=e.getTelefono() %>')" >Seleccionar</a>
+                           </td>
+                       </tr>
+                       <% } %>
+                   </table>
+                </div>
+                <div class="col-md-1"></div>
+             </div><!--End Row-->
         </div>      
         <jsp:include page="plantilla/footer.jsp"/> 
     </body>
