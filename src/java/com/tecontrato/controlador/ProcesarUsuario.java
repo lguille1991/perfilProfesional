@@ -37,7 +37,6 @@ public class ProcesarUsuario extends HttpServlet {
         
         try {
             
-            usu.setIdUsuario(Integer.parseInt(request.getParameter("txtIdUsuario")));
             usu.setRol(new Rol(Integer.parseInt(request.getParameter("txtIdRol"))));
             usu.setUsuario(request.getParameter("txtUsuario"));
             usu.setClave(request.getParameter("txtClave"));
@@ -48,10 +47,12 @@ public class ProcesarUsuario extends HttpServlet {
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                usu.setIdUsuario(Integer.parseInt(request.getParameter("txtIdUsuario")));
                 crudu.modificarUsuario(usu);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
+                usu.setIdUsuario(Integer.parseInt(request.getParameter("txtIdUsuario")));
                 crudu.eliminarUsuario(usu);
                 val="Datos eliminados correctamente";
             }
