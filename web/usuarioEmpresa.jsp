@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="plantilla/libs.jsp"/>
-        <title>Usuario</title>
+        <title>Usuario Empresa</title>
         <script Language='JavaScript'>
           
           $(document).ready(function(){
@@ -23,14 +23,12 @@
         <div class="container-fluid">
             <div class="row main">
                 <div class="main-login main-center">
-                    <h3><strong>USUARIO</strong></h3>
+                    <h3><strong>USUARIO EMPRESA</strong></h3>
                     <form class="" method="GET" action="procesarUsuario">
                             <div class="form-group">
-                                    <label for="txtIdUsuario" class="cols-sm-2 control-label">Código</label>
                                     <div class="cols-sm-10">
                                             <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" readonly="true"/>
+                                                    <input type="hidden" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" readonly="true"/>
                                             </div>
                                     </div>
                             </div>

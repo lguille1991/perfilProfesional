@@ -27,11 +27,9 @@
                     <h3><strong>USUARIO CANDIDATO</strong></h3>
                     <form class="" method="GET" action="procesarUsuario">
                             <div class="form-group">
-                                    <label for="txtIdUsuario" class="cols-sm-2 control-label">Código</label>
                                     <div class="cols-sm-10">
                                             <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" readonly="true"/>
+                                                    <input type="hidden" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" readonly="true"/>
                                             </div>
                                     </div>
                             </div>

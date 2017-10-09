@@ -32,11 +32,19 @@
                             <h3><strong>EMPRESA</strong></h3>
                             <form class="" method="GET" action="procesarEmpresa">
                                     <div class="form-group">
-                                            <label for="txtIdEmpresa" class="cols-sm-2 control-label">Código</label>
+                                            <label for="txtNombreEmpresa" class="cols-sm-2 control-label">Nombre</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código" readonly="true"/>
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                                                            <input type="text" class="form-control" name="txtNombreEmpresa" id="txtNombreEmpresa"  placeholder="Nombre de la empresa"/>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                            <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                            <input type="hidden" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código" readonly="true"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -77,16 +85,6 @@
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i></span>
                                                             <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono"  placeholder="Ingrese el numero telefónico"/>
-                                                    </div>
-                                            </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                            <label for="txtNombreEmpresa" class="cols-sm-2 control-label">Nombre</label>
-                                            <div class="cols-sm-10">
-                                                    <div class="input-group">
-                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtNombreEmpresa" id="txtNombreEmpresa"  placeholder="Nombre de la empresa"/>
                                                     </div>
                                             </div>
                                     </div>
