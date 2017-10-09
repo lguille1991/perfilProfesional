@@ -50,13 +50,10 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-venus-mars" aria-hidden="true"></i></span>
-                                                            <%
-                                                            List<Genero>ls2=ccan.listaGenero();
-                                                            for(Genero ge:ls2){
-                                                            %>
-                                                            <input type="radio" id="test1" name="genero" required="true" value="<%=ge.getIdGenero() %>"checked="">
-                                                            <label for="test1"><%=ge.getGenero() %></label>
-                                                            <%}%>
+                                                            <input type="radio" id="test1" name="genero" required="true" value="1" checked>
+                                                            <label for="test1">Femenino</label>
+                                                            <input type="radio" id="test2" name="genero" required="true" value="2">
+                                                            <label for="test2">Masculino</label>
                                                     </div>
                                             </div>
                                     </div> 
