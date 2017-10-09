@@ -31,8 +31,7 @@ public class ProcesarCandidato extends HttpServlet {
             String val = null;
          try {
             
-            can.setIdCandidato(Integer.parseInt(request.getParameter("txtIdCandidaro")));
-            can.setDepto(new Departamento(Integer.parseInt(request.getParameter("txtIdDepto"))));
+            can.setDepto(new Departamento(Integer.parseInt(request.getParameter("cmbDepto"))));
             can.setGenero(new Genero(Integer.parseInt(request.getParameter("genero"))));
             can.setNombre(request.getParameter("txtNombre"));
             can.setNacionalidad(request.getParameter("txtNacionalidad"));
@@ -46,16 +45,18 @@ public class ProcesarCandidato extends HttpServlet {
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                can.setIdCandidato(Integer.parseInt(request.getParameter("txtIdCandidaro")));
                 crca.modificarCandidato(can);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
+                can.setIdCandidato(Integer.parseInt(request.getParameter("txtIdCandidaro")));
                 crca.eliminarCandidato(can);
                 val="Datos eliminados correctamente";
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("habilidad.jsp");
+            response.sendRedirect("usuarioCandidato.jsp");
             } catch (Exception e) {
                 request.setAttribute("ERROR", e.toString());
             }

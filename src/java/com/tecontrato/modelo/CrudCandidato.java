@@ -2,6 +2,7 @@
 package com.tecontrato.modelo;
 
 import com.tecontrato.conexion.Conexion;
+import com.tecontrato.utilidades.Utilidades;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,21 +22,21 @@ public class CrudCandidato extends Conexion {
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="insert into candidato(iddepartamento, idgenero, nombre, nacionalidad, fechanacimiento, direccion, foto) values(?,?,?,?,?,?,?)";
+            String sql="insert into candidato(iddepto, idgenero, nombre, nacionalidad, fechanacimiento, direccion, foto) values(?,?,?,?,?,?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);           
             
             pre.setInt(1, cd.getDepto().getIdDepto());
             pre.setInt(2, cd.getGenero().getIdGenero());
             pre.setString(3, cd.getNombre());
             pre.setString(4, cd.getNacionalidad());
-            pre.setString(5, cd.getFechaNacimiento());
+            pre.setDate(5, Utilidades.convertFromStrToSqlDate(cd.getFechaNacimiento(), "yyyy-MM-dd"));
             pre.setString(6, cd.getDireccion());
             pre.setString(7, cd.getFoto());
             
             pre.executeUpdate(); 
             
         } catch (Exception e) {
-            
+            e.printStackTrace();
             throw e;
         }
     }
@@ -47,7 +48,7 @@ public class CrudCandidato extends Conexion {
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="update candidato set iddepartamento=?, idgenero=?, nombre=?, nacionalidad=?, fechanacimiento=?, direccion=?, foto=?  where idcandidato=?";
+            String sql="update candidato set iddepto=?, idgenero=?, nombre=?, nacionalidad=?, fechanacimiento=?, direccion=?, foto=?  where idcandidato=?";
             PreparedStatement pre = conexion.prepareStatement(sql); 
             
             pre.setInt(1, cd.getDepto().getIdDepto());
