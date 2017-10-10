@@ -82,7 +82,7 @@
          <h3><strong>HABILIDAD</strong></h3>
         <!--Tabla para mostrar registros-->  
         <div class="row ">
-            <div class="col-md-10"><input type="text" name="search"  id="buscar" placeholder="Busqueda"></div><div class="col-md-2"> <a id="buttontbl" class="btn btn-primary pull-right"  href="" data-toggle="modal" data-target="#habilidad">Nuevo</a></div>
+            <div class="col-md-10"><input type="text" name="search"  id="buscar" placeholder="Busqueda"></div><div class="col-md-2"> <a id="buttontbl" class="btn btn-primary pull-right" onclick="cargar()"  href="" data-toggle="modal" data-target="#habilidad">Nuevo</a></div>
         </div>
         <table class="table active " id="tblMostrar" >
             <thead >
