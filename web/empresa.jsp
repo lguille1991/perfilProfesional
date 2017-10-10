@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                            <input type="hidden" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código" readonly="true" value="<%=idu %>/>
+                                                            <input type="hidden" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código" readonly="true" value="<%=idu %>"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -86,7 +86,7 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono"  placeholder="Ingrese el numero telefónico"/>
+                                                            <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono" />
                                                     </div>
                                             </div>
                                     </div>
