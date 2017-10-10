@@ -17,7 +17,11 @@
         <jsp:include page="plantilla/libs.jsp"/>
         <title>Candidato</title>
     </head>
-    <%CrudCandidato ccan=new CrudCandidato(); %>
+    <%
+        CrudCandidato ccan=new CrudCandidato(); 
+        HttpSession sess = request.getSession(true); //use false to use the existing session
+        String idu = (String) sess.getAttribute("txtIdUsuario");
+    %>
     <body class="bodyFormulario">
         <div class="container-fluid">
             <jsp:include page="plantilla/menu.jsp" />
@@ -40,7 +44,7 @@
                                     <div class="form-group">
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                            <input type="hidden" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" readonly="" required="true"/>
+                                                        <input type="hidden" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" required="true" value="<%=idu %>"/>
                                                     </div>
                                             </div>
                                     </div>

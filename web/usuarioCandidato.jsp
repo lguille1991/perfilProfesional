@@ -4,6 +4,7 @@
     Author     : Kevin López
 --%>
 
+<%@page import="com.tecontrato.modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,11 @@
               $('.phone').mask('(000)0000-0000');
           }); 
           
+          <%
+              CrudUsuario cus = new CrudUsuario();
+              int idUsuario = cus.ultimoId();
+          %>
+          
         </script>
         <title>Usuario Candidato</title>
     </head>
@@ -29,7 +35,7 @@
                             <div class="form-group">
                                     <div class="cols-sm-10">
                                             <div class="input-group">
-                                                    <input type="hidden" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" readonly="true"/>
+                                                    <input type="hidden" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" value="<%=idUsuario+1 %>"/>
                                             </div>
                                     </div>
                             </div>
@@ -48,7 +54,7 @@
                                     <div class="cols-sm-10">
                                             <div class="input-group">
                                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="txtUsuario" id="txtUsuario"  placeholder="Nombre de usuario"/>
+                                                    <input type="text" class="form-control" name="txtUsuario" id="txtUsuario" placeholder="Nombre de usuario"/>
                                             </div>
                                     </div>
                             </div>

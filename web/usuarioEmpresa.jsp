@@ -1,23 +1,30 @@
 <%-- 
-    Document   : usuarioEmpresa
-    Created on : 08-oct-2017, 12:50:14
-    Author     : lguil
+    Document   : usuarioCandidato
+    Created on : 10-08-2017, 03:41:07 PM
+    Author     : Kevin López
 --%>
 
+<%@page import="com.tecontrato.modelo.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="plantilla/libs.jsp"/>
-        <title>Usuario Empresa</title>
+        <title>Empresa</title>
         <script Language='JavaScript'>
           
           $(document).ready(function(){
               $('.phone').mask('(000)0000-0000');
           }); 
           
+          <%
+              CrudEmpresa cem = new CrudEmpresa();
+              int idEmpresa = cem.ultimoId();
+          %>
+          
         </script>
+        <title>Usuario Empresa</title>
     </head>
     <body id="home" class="bodyFormulario">
         <div class="container-fluid">
@@ -28,7 +35,7 @@
                             <div class="form-group">
                                     <div class="cols-sm-10">
                                             <div class="input-group">
-                                                    <input type="hidden" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" readonly="true"/>
+                                                    <input type="hidden" class="form-control" name="txtIdUsuario" id="txtIdUsuario"  placeholder="Código" value="<%=idEmpresa+1 %>"/>
                                             </div>
                                     </div>
                             </div>
@@ -47,7 +54,7 @@
                                     <div class="cols-sm-10">
                                             <div class="input-group">
                                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="txtUsuario" id="txtUsuario"  placeholder="Nombre de usuario"/>
+                                                    <input type="text" class="form-control" name="txtUsuario" id="txtUsuario" placeholder="Nombre de usuario"/>
                                             </div>
                                     </div>
                             </div>

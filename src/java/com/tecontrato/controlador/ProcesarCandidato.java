@@ -56,7 +56,7 @@ public class ProcesarCandidato extends HttpServlet {
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("usuarioCandidato.jsp");
+            response.sendRedirect("index.jsp");
             } catch (Exception e) {
                 request.setAttribute("ERROR", e.toString());
             }

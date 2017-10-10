@@ -26,6 +26,8 @@
             <jsp:include page="plantilla/menu.jsp"/>
             <%
                 CrudEmpresa cemp = new CrudEmpresa();
+                HttpSession sess = request.getSession(true); //use false to use the existing session
+                String idu = (String) sess.getAttribute("txtIdUsuario");
             %>
                 <div class="row main">
                     <div class="main-login main-center">
@@ -44,7 +46,7 @@
                                     <div class="form-group">
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                            <input type="hidden" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código" readonly="true"/>
+                                                            <input type="hidden" class="form-control" name="txtIdEmpresa" id="txtIdEmpresa"  placeholder="Código" readonly="true" value="<%=idu %>/>
                                                     </div>
                                             </div>
                                     </div>

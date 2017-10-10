@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,11 +36,17 @@ public class ProcesarUsuario extends HttpServlet {
         CrudUsuario crudu = new CrudUsuario();
         String val = null;
         
+        
         try {
             
             usu.setRol(new Rol(Integer.parseInt(request.getParameter("txtIdRol"))));
             usu.setUsuario(request.getParameter("txtUsuario"));
             usu.setClave(request.getParameter("txtClave"));
+            
+            String txtIdUsuario = request.getParameter("txtIdUsuario");
+            String txtIdRol = request.getParameter("txtIdRol");
+            HttpSession sess = request.getSession(); 
+            sess.setAttribute("txtIdUsuario", txtIdUsuario);
             
             if(request.getParameter("btnGuardar")!=null)
             {
@@ -58,7 +65,12 @@ public class ProcesarUsuario extends HttpServlet {
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("index.jsp");
+            if(txtIdRol.equals("2")){
+                response.sendRedirect("empresa.jsp");
+            }
+            else if(txtIdRol.equals("3")){
+                response.sendRedirect("candidato.jsp");
+            }
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

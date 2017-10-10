@@ -115,6 +115,23 @@ public class CrudEmpresa extends Conexion {
         return lst;
     }  
     
-    
+    public int ultimoId() throws Exception{
+        Conexion db = new Conexion();
+        Connection conexion = null;
+        ResultSet res;
+        try{
+            conexion = db.getConnection();
+            String sql="SELECT MAX(idUsuario) AS id FROM usuario";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            res=pre.executeQuery();
+            while(res.next()){
+                int id = res.getInt("id");
+                return id;
+            }
+        }catch(Exception e){
+            
+        }
+        return 0;
+    }
     
 }
