@@ -101,13 +101,20 @@ public class CrudOferta extends Conexion{
         try 
         {
             conexion = db.getConnection();
-            String sql="select idoferta, cargo.idcargo, cargo.nombrecargo, nivelexperiencia.idnivelexperiencia, nivelexperiencia.nombrenivelexperiencia, "
-                    + "departamento.iddepto, departamento.nombredepto, empresa.idempresa, empresa.actividad, empresa.descripcion, empresa.email, "
-                    + "empresa.telefono, empresa.nombreempresa, nombre, vacantes, oferta.descripcion, edadmin, edadmax from oferta "
-                    + "inner join area on oferta.idarea=area.idarea inner join cargo on oferta.idcargo=cargo.idcargo "
-                    + "inner join nivelexperiencia on oferta.idnivelexperiencia=nivelexperiencia.idnivelexperiencia "
-                    + "inner join departamento on oferta.iddepto=departamento.iddepto "
-                    + "inner join empresa on oferta.idempresa=empresa.idempresa";
+            String sql="select idoferta, nombre, vacantes, oferta.descripcion,  edadmin, edadmax, " 
+                    +"area.idarea, area.nombrearea, " 
+                    +"cargo.idcargo, cargo.nombrecargo, " 
+                    +"nivelexperiencia.idnivelexperiencia, nivelexperiencia.nombrenivelexperiencia, " 
+                    +"tipocontratacion.idtipocontratacion, tipocontratacion.nombrecontratacion, " 
+                    +"departamento.iddepto, departamento.nombredepto, " 
+                    +"empresa.idempresa, empresa.actividad, empresa.descripcion, empresa.email, empresa.telefono, empresa.nombreempresa " 
+                    +"from oferta " 
+                    +"inner join area on oferta.idarea=area.idarea inner join cargo on oferta.idcargo=cargo.idcargo " 
+                    +"inner join nivelexperiencia on oferta.idnivelexperiencia=nivelexperiencia.idnivelexperiencia " 
+                    +"inner join departamento on oferta.iddepto=departamento.iddepto " 
+                    +"inner join empresa on oferta.idempresa=empresa.idempresa " 
+                    +"inner join tipocontratacion on oferta.idtipocontratacion = tipocontratacion.idtipocontratacion "
+                    + "order by idoferta asc";
             PreparedStatement pre = conexion.prepareCall(sql);
             res=pre.executeQuery();
             while(res.next())

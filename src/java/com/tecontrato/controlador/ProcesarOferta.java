@@ -81,7 +81,7 @@ public class ProcesarOferta extends HttpServlet {
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("oferta.jsp");
+            response.sendRedirect("ofertasempresa.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }
