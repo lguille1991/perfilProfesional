@@ -36,10 +36,12 @@ public class ProcesarArea extends HttpServlet {
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                ar.setIdArea(Integer.parseInt(request.getParameter("txtCodigo")));
                 crar.modificarArea(ar);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
+                ar.setIdArea(Integer.parseInt(request.getParameter("txtCodigo")));
                 crar.eliminarArea(ar);
                 val="Datos eliminados correctamente";
             }

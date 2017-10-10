@@ -85,7 +85,7 @@ public class CrudArea extends Conexion {
         List<Area>lst= new ArrayList();
         try {
             conexion = db.getConnection();
-            String sql="select * from area order by idarea";
+            String sql="select * from area";
             PreparedStatement pre = conexion.prepareCall(sql);
             res = pre.executeQuery();
             while(res.next())

@@ -54,6 +54,7 @@ public class ProcesarEducacion extends HttpServlet {
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                
                 cedu.modificarEducacion(edu);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)

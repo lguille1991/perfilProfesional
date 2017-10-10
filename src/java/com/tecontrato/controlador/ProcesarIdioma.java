@@ -27,11 +27,10 @@ public class ProcesarIdioma extends HttpServlet {
         Idioma idi = new Idioma();
         CrudIdioma crid = new CrudIdioma();
         String val = null;
-        
         try {
             
-            idi.setIdIdioma(Integer.parseInt(request.getParameter("txtCodigo")));
-            idi.setNombreIdioma(request.getParameter("txtNombreIdioma"));
+            
+            idi.setNombreIdioma(request.getParameter("txtIdioma"));
             
             if(request.getParameter("btnGuardar")!=null)
             {
@@ -39,19 +38,22 @@ public class ProcesarIdioma extends HttpServlet {
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                idi.setIdIdioma(Integer.parseInt(request.getParameter("txtCodigo")));
                 crid.modificarIdioma(idi);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
+                idi.setIdIdioma(Integer.parseInt(request.getParameter("txtCodigo")));
                 crid.eliminarIdioma(idi);
                 val="Datos eliminados correctamente";
             }
             
             request.setAttribute("valor", val);
             response.sendRedirect("index.jsp");
-     } catch (Exception e) {
-         request.setAttribute("ERROR", e.toString());
-     }
+            
+        } catch (Exception e) {
+            request.setAttribute("ERROR", e.toString());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

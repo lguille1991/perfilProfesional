@@ -38,10 +38,12 @@ public class ProcesarCargo extends HttpServlet {
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                car.setIdCargo(Integer.parseInt(request.getParameter("txtCodigo")));
                 crcar.modificarCargo(car);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
+                car.setIdCargo(Integer.parseInt(request.getParameter("txtCodigo")));
                 crcar.eliminarCargo(car);
                 val="Datos eliminados correctamente";
             }

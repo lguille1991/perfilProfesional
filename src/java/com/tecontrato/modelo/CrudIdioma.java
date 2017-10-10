@@ -15,19 +15,21 @@ public class CrudIdioma extends Conexion{
     
     public void insertarIdioma(Idioma idi) throws Exception
     {
+        
         Conexion db = new Conexion();
         Connection conexion = null;
-        try 
-        {
+        try {
             conexion = db.getConnection();
-            String sql="insert into idioma(ididioma, nombreidioma) values(?,?)";
-            PreparedStatement pre = conexion.prepareStatement(sql);
-            pre.setInt(1, idi.getIdIdioma());
-            pre.setString(2, idi.getNombreIdioma());
-            pre.executeUpdate();
-        } 
-        catch (Exception e) 
-        {
+            String sql="insert into idioma(nombreidioma) values(?)";
+            PreparedStatement pre = conexion.prepareStatement(sql);           
+            
+            
+            pre.setString(1, idi.getNombreIdioma());
+            
+            pre.executeUpdate(); 
+            
+        } catch (Exception e) {
+            
             throw e;
         }
     }

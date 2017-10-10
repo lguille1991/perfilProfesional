@@ -52,6 +52,7 @@
                  <form action="procesarHabilidad" method="post" name="frmHabilidad" >
                 <div class="modal-body" id="modalBody">               
                     <div class="main-center">
+                        
                         <h3><strong>HABILIDAD</strong></h3>
                         <input type="text"  name="idhabilidad" id="idhabilidad"   class="form-control" placeholder="Código" style="display: none;" readonly="true"/>
                                 <input type="text" name="nombrehabilidad" id="nombrehabilidad"  class="form-control" placeholder="Nombre"  required="true" />
@@ -106,7 +107,7 @@
            <% } %>
        </table>
     </div>
-    <
+    
   
  </div><!--End Row-->
 <!--Footer-->
