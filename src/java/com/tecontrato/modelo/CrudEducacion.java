@@ -12,21 +12,22 @@ import java.util.List;
  *
  * @author Geofredo
  */
-public class CrudCurso extends Conexion {
+public class CrudEducacion extends Conexion{
     
-    public void insertarCurso(Curso cur) throws Exception
+    public void insertarEducacion(Educacion edu) throws Exception
     {
         
         Conexion db = new Conexion();
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="insert into curso(titulo,institucion,aniofinalizacion,idcurriculum) values(?,?,?,?)";
+            String sql="insert into educacion(idcurriculum,institucion,especialidad,aniofinalizacion) values(?,?,?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);           
             
-            pre.setString(1, cur.getTitulo());
-            pre.setString(2, cur.getInstitucion());
-            pre.setInt(3, cur.getAnioFinalizacion());
+            pre.setInt(1, edu.getCurriculum().getIdCurriculum());
+            pre.setString(2, edu.getInstitucion());
+            pre.setString(3, edu.getEspecialidad());
+            pre.setInt(4, edu.getAnioFinalizacion());
             
             pre.executeUpdate(); 
             
@@ -36,20 +37,21 @@ public class CrudCurso extends Conexion {
         }
     }
     
-    public void modificarCurso(Curso cur) throws Exception
+    public void modificarEducacion(Educacion edu) throws Exception
     {
         
         Conexion db = new Conexion();
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="update curso set titulo=?,institucion=?,aniofinalizacion=? where idcurriculum=?";
+            String sql="update educacion set institucion=?,especialidad=?,aniofinalizacion where idcurriculum=? and especialidad=? ";
             PreparedStatement pre = conexion.prepareStatement(sql); 
             
-            pre.setString(1, cur.getTitulo());
-            pre.setString(2, cur.getInstitucion());
-            pre.setInt(3, cur.getAnioFinalizacion());
-            pre.setInt(4, cur.getCurriculum().getIdCurriculum());
+            
+            pre.setString(1, edu.getInstitucion());
+            pre.setString(2, edu.getEspecialidad());
+            pre.setInt(3, edu.getAnioFinalizacion());  
+            pre.setInt(4, edu.getCurriculum().getIdCurriculum());
             
             
             pre.executeUpdate(); 
@@ -61,18 +63,19 @@ public class CrudCurso extends Conexion {
     }
     
  
-    public void eliminarCurso(Curso cur) throws Exception
+    public void eliminarEducacion(Educacion edu) throws Exception
     {
         
         Conexion db = new Conexion();
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="delete from curso where idcurriculum=?";
+            String sql="delete from educacion where idcurriculum=? and especialidad=?";
             PreparedStatement pre = conexion.prepareStatement(sql);           
             
-            pre.setInt(1, cur.getCurriculum().getIdCurriculum());
-            
+            pre.setInt(1, edu.getCurriculum().getIdCurriculum());
+            pre.setString(2, edu.getEspecialidad());
+                 
             pre.executeUpdate(); 
             
         } catch (Exception e) {
@@ -82,36 +85,35 @@ public class CrudCurso extends Conexion {
     }
     
     
-     public List<Curso>mostrarCurso() throws Exception
+    public List<Educacion>mostrarEducacion() throws Exception
     {
-        Conexion db=new Conexion();
-        Connection conexion =null;
+        Conexion db = new Conexion();
+        Connection conexion = null;
         ResultSet res;
-        List<Curso>lst=new ArrayList();
-        try 
-        {
+        List<Educacion>lst= new ArrayList();
+        try {
             conexion = db.getConnection();
-            String sql="select titulo, institucion,aniofinalizacion, curriculum.idcurriculum from curso"
-                       +"inner join curriculum on curso.idcurriculum=curriculum.idcurriculum";
+            String sql="select * from educacion order by idcurriculum";
             PreparedStatement pre = conexion.prepareCall(sql);
-            res=pre.executeQuery();
+            res = pre.executeQuery();
             while(res.next())
             {
-
-                Curriculum cv = new Curriculum();
-                cv.setIdCurriculum(res.getInt("idcurriculum"));
                 
-                Curso cur = new Curso(res.getString("titulo"),res.getString("institucion"),res.getInt("aniofinalizacion"),cv);
-                lst.add(cur);
+                
+                
+                Curriculum cv = new Curriculum();
+                
+                
+                Educacion edu = new Educacion( cv, res.getString("institucion"),res.getString("especialidad"),res.getInt("aniofinalizacion"));
+                lst.add(edu);
                 
             }
-        } 
-        catch (Exception e) 
-        {
+        } catch (Exception e) {
             throw e;
         }
         return lst;
-    }
+    }  
+    
     
     
 }

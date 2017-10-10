@@ -20,7 +20,7 @@ public class CrudTelefono extends Conexion{
         try 
         {
             conexion = db.getConnection();
-            String sql="insert into telefono(telefono) values(?) where idcandidato=?";
+            String sql="insert into telefono(idcandidato,telefono) values(?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setString(1, tel.getTelefono());
             pre.setInt(2, tel.getCandidato().getIdCandidato());

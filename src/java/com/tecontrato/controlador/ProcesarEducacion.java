@@ -1,7 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.tecontrato.controlador;
 
-import com.tecontrato.modelo.Cargo;
-import com.tecontrato.modelo.CrudCargo;
+import com.tecontrato.modelo.CrudEducacion;
+import com.tecontrato.modelo.Curriculum;
+import com.tecontrato.modelo.Educacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -10,39 +16,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Nombre      : ProcesarCargo
- * Versión     : 1.0
- * Fecha       : 06/10/2017
- * CopyRight   : Programmer Group Services S.A de C.V
- * @author     : Alexis, Kevin, Luis, María José, Geofredo
+ *
+ * @author Geofredo
  */
-public class ProcesarCargo extends HttpServlet {
+public class ProcesarEducacion extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        Cargo car = new Cargo();
-        CrudCargo crcar = new CrudCargo();
+        
+        Educacion edu = new Educacion();
+        CrudEducacion cedu = new CrudEducacion();
         String val = null;
         
         try {
             
             
-            car.setNombreCargo(request.getParameter("txtNombreCargo"));
+            edu.setCurriculum(new Curriculum(Integer.parseInt(request.getParameter("txtCodigo"))));
+            edu.setInstitucion(request.getParameter("txtInstitucion"));
+            edu.setEspecialidad(request.getParameter("txtEspecialidad"));
+            edu.setAnioFinalizacion(Integer.parseInt(request.getParameter("txtAnioFinalizacion")));
             
             if(request.getParameter("btnGuardar")!=null)
             {
-                crcar.insertarCargo(car);
+                cedu.insertarEducacion(edu);
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
-                crcar.modificarCargo(car);
+                cedu.modificarEducacion(edu);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
-                crcar.eliminarCargo(car);
+                cedu.eliminarEducacion(edu);
                 val="Datos eliminados correctamente";
             }
             
@@ -51,6 +67,7 @@ public class ProcesarCargo extends HttpServlet {
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }
+        
         
     }
 

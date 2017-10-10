@@ -76,6 +76,10 @@
         <servlet-name>ProcesarUsuario</servlet-name>
         <servlet-class>com.tecontrato.controlador.ProcesarUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcesarEducacion</servlet-name>
+        <servlet-class>com.tecontrato.controlador.ProcesarEducacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcesarHabilidad</servlet-name>
         <url-pattern>/procesarHabilidad</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>ProcesarUsuario</servlet-name>
         <url-pattern>/procesarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarEducacion</servlet-name>
+        <url-pattern>/procesarEducacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

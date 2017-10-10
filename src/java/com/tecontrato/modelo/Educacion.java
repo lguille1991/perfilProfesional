@@ -22,6 +22,7 @@ public class Educacion {
         this.especialidad = especialidad;
         this.anioFinalizacion = anioFinalizacion;
     }
+ 
 
     public Curriculum getCurriculum() {
         return curriculum;

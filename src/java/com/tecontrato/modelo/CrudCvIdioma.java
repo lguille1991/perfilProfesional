@@ -20,7 +20,7 @@ public class CrudCvIdioma extends Conexion{
         try 
         {
             conexion = db.getConnection();
-            String sql="insert into cvidioma(idcurriculum,id nivel) values(?,?) where ididioma=?";
+            String sql="insert into cvidioma(idcurriculum,ididioma,idnivel) values(?,?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, cvi.getCurriculum().getIdCurriculum());
             pre.setInt(2, cvi.getNivel().getIdNivel());

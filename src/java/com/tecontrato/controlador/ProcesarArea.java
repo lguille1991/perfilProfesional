@@ -27,7 +27,7 @@ public class ProcesarArea extends HttpServlet {
         CrudArea crar = new CrudArea();
         String val = null;
         try {
-            ar.setIdArea(Integer.parseInt(request.getParameter("txtIdArea")));
+            
             ar.setNombreArea(request.getParameter("txtNombreArea"));
             
             if(request.getParameter("btnGuardar")!=null)

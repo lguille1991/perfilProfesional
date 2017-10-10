@@ -30,7 +30,7 @@ public class ProcesarIdioma extends HttpServlet {
         
         try {
             
-            idi.setIdIdioma(Integer.parseInt(request.getParameter("txtIdIdioma")));
+            idi.setIdIdioma(Integer.parseInt(request.getParameter("txtCodigo")));
             idi.setNombreIdioma(request.getParameter("txtNombreIdioma"));
             
             if(request.getParameter("btnGuardar")!=null)
