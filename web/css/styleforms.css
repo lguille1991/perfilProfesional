@@ -1,56 +1,52 @@
+.bodyFormulario{
+    background-image: url("../imagenes/fondo.jpg" );
+    background-repeat: repeat revert;
+  
+}
+body{
+      position: relative;
+}
+/*Estilo para Modal*/
+#modalBody{
+    padding: 8px;
 
+}
+.modal-fade{
+    background: rgba(0, 0, 0,3);  
+}
 #panel-heading{
-    background: #1F618D;
+    background: #45B39D;
+    border: 1px solid #45B39D;
+}
+#panel-primary{
+    border: 1px solid #45B39D;
+    background: rgba(24, 24, 24,0.95);  
 }
 .navbar, .dropdown-menu{
 background:rgb(31, 97, 141);
 opacity: 0.9;
 border: none;
 }
-.bodyFormulario{
-    background-image: url("../imagenes/fondo.jpg" );
-    background-repeat: repeat revert;
-}
 
-.nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
-  border-bottom: 3px solid transparent;
-}
-.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
-  border-bottom: 3px solid transparent;
-  background: none;
-}
-.navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
- color: #fff;
-}
-.dropdown-menu{
-      -webkit-box-shadow: none;
-    box-shadow:none;
-}
-
-.nav li:hover, .nav li.active{
-  border-bottom: #85C1E9   3px solid;
-}
-.navbar-toggle .icon-bar{
-    color: #fff;
-}
-#colAccion{
-    width: 20%;
-}
 #colAccion>a{
     text-decoration: none;
+    
 }
 
 #headertbl{
-    background: #1F618D;
+    background: #45B39D;
     color: whitesmoke;
 }
-h3,strong{text-align: center;}
+
+h3,strong{text-align: center;color: whitesmoke;}
 #tblMostrar{
-    margin-top: 20px;
+    background: rgba(248, 249, 249 , 0.2);
+    margin-top: 10px;
 }
-#modalBody{
-    padding: 8px;
+.popover-title,.popover-content{
+    color: black;
 }
+
 #botones{
     text-align: center;
     margin: 15px;
@@ -60,34 +56,30 @@ h3,strong{text-align: center;}
 }
 
 #buscar {
-    margin-top:10px;
-      width: 150px;
+    width: 150px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    background-color: white;
+    background: rgba(0, 0, 0, 0.3); 
     background-image: url('../imagenes/search.png') ;
-    background-position: 5px 6px; 
+    background-position: 4px 3px; 
     background-repeat: no-repeat;
-    padding: 10px 20px 10px 40px;
+    padding: 8px 20px 8px 40px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
+
 
 #buscar:focus {
     width: 100%;
 }
 
+/*Formularios*/
 #playground-container {
     height: 500px;
     overflow: hidden !important;
     -webkit-overflow-scrolling: touch;
-}
-body{
-    position: relative;
-    
-
 }
 
 .main{
@@ -115,26 +107,18 @@ label{
 
 input,
 input::-webkit-input-placeholder {
-    font-size: 13px;
+    font-size: 14px;
     padding-top: 3px;
+    
 }
 textarea,
 textarea::-webkit-input-placeholder{
-     font-size: 13px;
+     font-size: 14px;
      padding-top: 3px;
      resize: none;
 }
-.main-login{
- 	background-color: #fff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 
-}
+
 .form-control {
     height: auto!important;
 padding: 8px 12px !important;
@@ -144,11 +128,9 @@ padding: 8px 12px !important;
     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
 }
-
-.main-center{
- 	margin-top: 30px;
- 	margin: 0 auto;
- 	max-width: 500px;
+.main-perfil{
+        margin-top: 50px;
+ 	margin: 10px;
         padding: 10px 40px;
 	background:#009edf;
 	color: #FFF;
@@ -156,7 +138,41 @@ padding: 8px 12px !important;
 	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
         -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
         box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
-        background: rgba(0, 0, 0, 0.3);  
+        background: rgba(0, 0, 0, 0.3); 
+}
+
+.main-cv{
+        margin-top: 50px;
+ 	margin: 0 auto;
+ 	max-width: 600px;
+        padding: 10px 40px;
+	color: #FFF;
+        text-shadow: none;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        background: rgba(0, 0, 0, 0.3); 
+}
+.main-tbl{
+        margin-top: 50px;
+ 	margin: 0 auto;
+        width: 100%;
+        padding: 20px 40px ;
+	color: #FFF;
+        text-shadow: none;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+        background: rgba(0, 0, 0, 0.3); 
+}
+.main-center{
+ 	margin-top: 50px;
+ 	margin: 0 auto;
+ 	max-width: 500px;
+        padding: 10px 40px;
+	color: #FFF;
+        text-shadow: none;
+        background: rgba(24, 24, 24,0.3);   
 
 }
 span.input-group-addon{
@@ -168,37 +184,48 @@ span.input-group-addon i {
     color: #45B39D;;
     font-size: 17px;
 }
+
+
 #button{
-    background: #45B39D;;
+    background: #45B39D;
+    border: 1px solid #009999;
 }
+#buttontbl{
+    background: #45B39D;
+    border: 1px solid #009999;
+    margin-top: 2px;width: 100%;
+}
+
+
+#buttonL{
+    background: #45B39D;
+    border: 1px solid #009999;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#button:hover{
+    opacity: 0.8;
+}
+.link{
+    color: #009999;
+}
+.link:hover{
+    color: #009999;
+     
+}
+
 .login-button{
-    
-	margin-top: 5px;
+    margin-top: 5px;
 }
 
 .login-register{
    background: #45B39D;
-  
-	font-size: 11px;
-	text-align: center;
+font-size: 11px;
+text-align: center;
+
 }
-#select-dark{
-    width: 100%;
-    
-}
-#dark {
-  width: 100%;
-  height: 40px;
-  border: 0;
-  background: #00cccc;
-  color: #ccc;
-  font-size: 13px;
-  padding-top: 3px;
-  padding-left: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 3px;
-}
-input[type='text'],input[type="email"],input[type="number"],#txtDescripcion{
+
+input[type='text'],input[type="email"],input[type="number"],input[type="password"],#txtDescripcion{
   height: 40px;
   font-size: 14px;
   border: 0;
@@ -209,6 +236,23 @@ input[type='text'],input[type="email"],input[type="number"],#txtDescripcion{
 }
 #titulo{
     color: whitesmoke;
+}
+/*Estilo Selects*/
+#select-dark{
+    width: 100%;
+    
+}
+#dark {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  background: #00cccc;
+  color: #ccc;
+  font-size: 14px;
+  padding-top: 3px;
+  padding-left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
 }
 
 /*Estilo radio buttons*/
@@ -325,3 +369,5 @@ input[type='text'],input[type="email"],input[type="number"],#txtDescripcion{
 #copyRight{
     color: #45B39D;
 }
+
+

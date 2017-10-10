@@ -30,32 +30,33 @@
           }); 
         </script>
 </head>
-<body id="home">
+<body class="bodyFormulario" id="home">
 <div class="container-fluid">
 <!--Barra de menú-->
 <jsp:include page="plantilla/menu.jsp" />
-<% CrudHabilidad cha = new CrudHabilidad(); %>
+<%
+    CrudHabilidad cha = new CrudHabilidad();
+%>
 <div class="row">
     <!--Cambiar id modal-fade segun formulario con data-toggle="modal" data-target="#id" 
     con esto se manda a llamar el modal  en las etiquetas <a></a> o <button></button> -->
-    <div class="modal fade" id="habilidad" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="panel panel-primary">
+    
+        <div class="modal fade" id="habilidad" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+        <div class="modal-dialog"  id="modal-dialog">
+            <div class="panel panel-primary" id="panel-primary">
                 <div class="panel-heading" id="panel-heading" >
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="panel-title" id="contactLabel">TeContrato.com</h4>
                 </div>
                  <!--Formulario-->
-                <form action="procesarHabilidad" method="post" name="frmHabilidad" >
-                    <div class="modal-body" id="modalBody">               
-                        <div class="row">
-                            <div class="col-md-2" ></div>
-                            <div class="col-md-8" >
-                                <h2>Habilidad</h2>
-                                <input type="text"  name="idhabilidad" id="idhabilidad"   class="form-control" placeholder="Código" readonly="true"/>
+                 <form action="procesarHabilidad" method="post" name="frmHabilidad" >
+                <div class="modal-body" id="modalBody">               
+                    <div class="main-center">
+                        <h3><strong>HABILIDAD</strong></h3>
+                        <input type="text"  name="idhabilidad" id="idhabilidad"   class="form-control" placeholder="Código" style="display: none;" readonly="true"/>
                                 <input type="text" name="nombrehabilidad" id="nombrehabilidad"  class="form-control" placeholder="Nombre"  required="true" />
                                 <div id="botones">
-                                    <button type="submit" name="btnGuardar" class="btn btn-primary fa fa-save"> Guardar</button>
+                                    <button type="submit" name="btnGuardar" class="btn btn-primary glyphicon glyphicon-floppy-disk"> Guardar</button>
                                     <button type="submit" data-toggle="confirmation" name="btnModificar" class="btn btn-warning fa fa-undo" data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt"
                                     data-btn-ok-class="btn-success" data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger"
                                     data-title="¿Está seguro de modificar el registro?" data-content="Esto podría ser peligroso"> Modificar</button>
@@ -73,21 +74,22 @@
             </div>
         </div>
     </div><!--End modal-->
-</div><!--End Row-->
- <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <h2>Habilidad</h2>
-        <!--Tabla para mostrar registros-->  
-        <a   class="btn btn-primary"  href="" data-toggle="modal" data-target="#habilidad"  onclick="cargar()" >Nuevo</a><br>
-        <input type="text" name="search"  id="buscar" placeholder="Busqueda">
+    
+    
 
-        <table class="w3-table-all " id="tblMostrar">
+    <div class="row main" style="margin-top: 0;">
+    <div class=" main-tbl">
+         <h3><strong>HABILIDAD</strong></h3>
+        <!--Tabla para mostrar registros-->  
+        <div class="row ">
+            <div class="col-md-10"><input type="text" name="search"  id="buscar" placeholder="Busqueda"></div><div class="col-md-2"> <a id="buttontbl" class="btn btn-primary pull-right"  href="" data-toggle="modal" data-target="#habilidad">Nuevo</a></div>
+        </div>
+        <table class="table active " id="tblMostrar" >
             <thead >
             <tr id="headertbl">
                <th>Código</th>
                <th>Habilidad</th>
-               <th>Acción</th>
+               <th style="width: 10%;">Acción</th>
              </tr>
            </thead>
             <%
@@ -97,14 +99,15 @@
            <tr>
                <td><%= h.getIdHabilidad() %> </td>
                <td><%= h.getNombreHabilidad() %></td>
-               <td id="colAccion" >
-                  <a   class="btn btn-primary" href="" data-toggle="modal" data-target="#habilidad" onclick="cargar(<%= h.getIdHabilidad()%>,'<%=h.getNombreHabilidad() %>')" >Seleccionar</a>
+               <td id="colAccion" style="width: 50px;">
+                   <a   class="btn btn-primary" id="button" href="" data-toggle="modal" data-target="#habilidad" onclick="cargar(<%= h.getIdHabilidad()%>,'<%=h.getNombreHabilidad() %>')" ><span class="glyphicon glyphicon-plus-sign"></span></a>
                </td>
            </tr>
            <% } %>
        </table>
     </div>
-    <div class="col-md-1"></div>
+    <
+  
  </div><!--End Row-->
 <!--Footer-->
 <jsp:include page="plantilla/footer.jsp" />
