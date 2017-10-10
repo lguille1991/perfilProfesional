@@ -50,6 +50,8 @@
                                                     </div>
                                             </div>
                                     </div>
+                                    
+                                    <input type="hidden" class="form-control" name="txtIdRol" id="txtIdRol"  placeholder="" readonly="true" value="2"/>
 
                                     <div class="form-group">
                                             <label for="txtActividad" class="cols-sm-2 control-label">Actividad</label>

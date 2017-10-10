@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,6 +34,9 @@ public class ProcesarEmpresa extends HttpServlet {
             emp.setTelefono(request.getParameter("txtTelefono"));
             emp.setNombreEmpresa(request.getParameter("txtNombreEmpresa"));
             
+            String txtIdRol = request.getParameter("txtIdRol");
+            HttpSession sess = request.getSession(); 
+            sess.setAttribute("txtIdRol", txtIdRol);
             
             if(request.getParameter("btnGuardar")!=null)
             {
@@ -46,12 +50,20 @@ public class ProcesarEmpresa extends HttpServlet {
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
+                emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
                 crem.eliminarEmpresa(emp);
                 val="Datos eliminados correctamente";
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("index.jsp");
+            if(txtIdRol.equals("2"))
+            {
+                response.sendRedirect("index.jsp");
+            }
+            else if(txtIdRol.equals("1")){
+
+                response.sendRedirect("empresaAdmin.jsp");
+            }
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }
