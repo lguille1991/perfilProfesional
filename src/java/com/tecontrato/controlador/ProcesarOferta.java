@@ -36,36 +36,52 @@ public class ProcesarOferta extends HttpServlet {
         
         try {
             
-            ofe.setIdOferta(Integer.parseInt(request.getParameter("txtIdOferta")));
-            ofe.setArea(new Area(Integer.parseInt(request.getParameter("txtIdArea"))));
-            ofe.setCargo(new Cargo(Integer.parseInt(request.getParameter("txtIdCargo"))));
-            ofe.setNivelExperiencia(new NivelExperiencia(Integer.parseInt(request.getParameter("txtIdNivelExperiencia"))));
-            ofe.setTipoContratacion(new TipoContratacion(Integer.parseInt(request.getParameter("txtIdTipoContratacion"))));
-            ofe.setDepartamento(new Departamento(Integer.parseInt(request.getParameter("txtIdDepartamento"))));
-            ofe.setEmpresa(new Empresa(Integer.parseInt(request.getParameter("txtIdEmpresa"))));
-            ofe.setNombre(request.getParameter("txtNombre"));
-            ofe.setVacantes(Integer.parseInt(request.getParameter("txtVacantes")));
-            ofe.setDescripcion(request.getParameter("txtDescripcion"));
-            ofe.setEdadMin(Integer.parseInt("txtEdadMin"));
-            ofe.setEdadMax(Integer.parseInt(request.getParameter("txtEdadMax")));
-            
+            //ofe.setIdOferta(Integer.parseInt(request.getParameter("txtIdOferta")));
             
             if(request.getParameter("btnGuardar")!=null)
             {
+                
+                ofe.setArea(new Area(Integer.parseInt(request.getParameter("cmbArea"))));
+                ofe.setCargo(new Cargo(Integer.parseInt(request.getParameter("cmbCargo"))));
+                ofe.setNivelExperiencia(new NivelExperiencia(Integer.parseInt(request.getParameter("cmbNivelExperiencia"))));
+                ofe.setTipoContratacion(new TipoContratacion(Integer.parseInt(request.getParameter("cmbTipoContratacion"))));
+                ofe.setDepartamento(new Departamento(Integer.parseInt(request.getParameter("cmbDepartamento"))));
+                ofe.setEmpresa(new Empresa(Integer.parseInt(request.getParameter("cmbEmpresa"))));
+                ofe.setNombre(request.getParameter("txtNombreOferta"));
+                ofe.setVacantes(Integer.parseInt(request.getParameter("txtVacantes")));
+                ofe.setDescripcion(request.getParameter("txtDescripcion"));
+                ofe.setEdadMin(Integer.parseInt(request.getParameter("txtEdadMin")));
+                ofe.setEdadMax(Integer.parseInt(request.getParameter("txtEdadMax")));
+
                 crof.insertarOferta(ofe);
                 val="Datos insertados correctamente";
             }else if(request.getParameter("btnModificar")!=null)
             {
+                
+                ofe.setIdOferta(Integer.parseInt(request.getParameter("txtIdOferta")));
+                ofe.setArea(new Area(Integer.parseInt(request.getParameter("cmbArea"))));
+                ofe.setCargo(new Cargo(Integer.parseInt(request.getParameter("cmbCargo"))));
+                ofe.setNivelExperiencia(new NivelExperiencia(Integer.parseInt(request.getParameter("cmbNivelExperiencia"))));
+                ofe.setTipoContratacion(new TipoContratacion(Integer.parseInt(request.getParameter("cmbTipoContratacion"))));
+                ofe.setDepartamento(new Departamento(Integer.parseInt(request.getParameter("cmbDepartamento"))));
+                ofe.setEmpresa(new Empresa(Integer.parseInt(request.getParameter("cmbEmpresa"))));
+                ofe.setNombre(request.getParameter("txtNombreOferta"));
+                ofe.setVacantes(Integer.parseInt(request.getParameter("txtVacantes")));
+                ofe.setDescripcion(request.getParameter("txtDescripcion"));
+                ofe.setEdadMin(Integer.parseInt(request.getParameter("txtEdadMin")));
+                ofe.setEdadMax(Integer.parseInt(request.getParameter("txtEdadMax")));
+                
                 crof.modificarOferta(ofe);
                 val="Datos modificados correctamente";
             }else if(request.getParameter("btnEliminar")!=null)
             {
+                ofe.setIdOferta(Integer.parseInt(request.getParameter("txtIdOferta")));
                 crof.eliminarOferta(ofe);
                 val="Datos eliminados correctamente";
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("oferta.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

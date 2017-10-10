@@ -20,8 +20,9 @@ public class CrudOferta extends Conexion{
         try 
         {
             conexion = db.getConnection();
-            String sql="insert into oferta(idarea,idcargo,idnivelexperiencia,idtipocontratacion,iddepto,idempresa,nombre,vacantes,descripcion,edadmin,edadmax)"
-                    + " values(?,?,?,?,?,?,?,?,?,?,?)";
+            String sql="INSERT INTO public.oferta( "
+                    +  "idoferta, idarea, idcargo, idnivelexperiencia, idtipocontratacion, iddepto, idempresa, nombre, vacantes, descripcion, edadmin, edadmax) " 
+                    +  "VALUES ((select max(idoferta)+1 from oferta ofe), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, ofe.getArea().getIdArea());
             pre.setInt(2, ofe.getCargo().getIdCargo());
@@ -49,8 +50,9 @@ public class CrudOferta extends Conexion{
         try 
         {
             conexion = db.getConnection();
-            String sql="update oferta set idarea=?, idcargo=?,idnivelexperiencia=?,idtipocontratacion=?,iddepto=?,idempresa=?,nombre=?,vacantes=?,descripcion=?,edadmin=?,edadmax=?)"
-                    + " where idoferta=?";
+            String sql="UPDATE public.oferta " 
+                    +  "SET idarea=?, idcargo=?, idnivelexperiencia=?, idtipocontratacion=?, iddepto=?, idempresa=?, nombre=?, vacantes=?, descripcion=?, edadmin=?, edadmax=? " 
+                    +  "WHERE idoferta=?;";
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, ofe.getArea().getIdArea());
             pre.setInt(2, ofe.getCargo().getIdCargo());
