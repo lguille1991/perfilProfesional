@@ -49,7 +49,7 @@ public class ProcesarCargo extends HttpServlet {
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("cargo.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

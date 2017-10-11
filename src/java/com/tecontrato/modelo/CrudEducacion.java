@@ -44,7 +44,7 @@ public class CrudEducacion extends Conexion{
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="update educacion set institucion=?,especialidad=?,aniofinalizacion where idcurriculum=? and especialidad=? ";
+            String sql="update educacion set institucion=?,especialidad=?,aniofinalizacion=? where idcurriculum=? and especialidad=?";
             PreparedStatement pre = conexion.prepareStatement(sql); 
             
             
@@ -102,7 +102,7 @@ public class CrudEducacion extends Conexion{
                 
                 
                 Curriculum cv = new Curriculum();
-                
+                cv.setIdCurriculum(res.getInt("idcurriculum"));
                 
                 Educacion edu = new Educacion( cv, res.getString("institucion"),res.getString("especialidad"),res.getInt("aniofinalizacion"));
                 lst.add(edu);

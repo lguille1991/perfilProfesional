@@ -47,7 +47,7 @@ public class ProcesarArea extends HttpServlet {
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("area.jsp");
             
         } catch (Exception e) {
             request.setAttribute("ERROR", e.toString());

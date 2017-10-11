@@ -58,7 +58,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true" ></i></span>
-                                                <input type="text" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" readonly="" />
+                                                <input type="text" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código"  />
                                             </div>
                                         </div>
 
@@ -95,9 +95,7 @@
 
                                             </div>
                                             </div>
-                                        
-                                        
-                                        
+
                                                 <div id="botones">
                                                     <button type="submit" name="btnGuardar" class="btn btn-primary glyphicon glyphicon-floppy-disk"> Guardar</button>
                                                     <button type="submit" data-toggle="confirmation" name="btnModificar" class="btn btn-warning fa fa-undo" data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt"
@@ -150,9 +148,9 @@
                <td><%= e.getInstitucion() %></td>
                <td><%= e.getEspecialidad()%></td>
                <td><%= e.getAnioFinalizacion()%></td>
-               <td id="colAccion" >
-                  <a   class="btn btn-primary" href="" data-toggle="modal" data-target="#educacion" onclick="cargar(<%= e.getCurriculum().getIdCurriculum()%>,'<%=e.getInstitucion() %>','<%=e.getEspecialidad() %>', <%= e.getAnioFinalizacion()  %>  )" >Seleccionar</a>
-               </td>
+               <td id="colAccion" style="width: 50px;">
+                                <a   class="btn btn-primary" id="button" href="" data-toggle="modal" data-target="#educacion" onclick="cargar(<%= e.getCurriculum().getIdCurriculum() %>, '<%=e.getInstitucion()%>', '<%=e.getEspecialidad() %>', <%= e.getAnioFinalizacion() %>   )" ><span class="glyphicon glyphicon-plus-sign"></span></a>
+                </td>
            </tr>
            <% } %>
                     </table>

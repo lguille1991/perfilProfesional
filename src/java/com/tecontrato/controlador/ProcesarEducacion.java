@@ -64,7 +64,7 @@ public class ProcesarEducacion extends HttpServlet {
             }
             
             request.setAttribute("valor", val);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("educacion.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }
