@@ -148,4 +148,74 @@ public class CrudUsuario extends Conexion{
         }
         return 0;
     }
+     public int autenticarUsuario(String usuario, String contrasena) throws Exception
+    {
+        Conexion db = new Conexion();
+        Connection conexion = null;
+        ResultSet rs;
+        int resp = 0;
+         try 
+         {  
+            conexion = db.getConnection();
+            String sql="select idrol from usuario  where usuario=? and clave=?";
+            PreparedStatement pst = conexion.prepareCall(sql);
+            pst.setString(1, usuario);
+            pst.setString(2, contrasena);
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+              resp = rs.getInt("idrol");     
+            } 
+        } catch (Exception e) {
+             throw e;
+        }
+        finally
+         {
+            
+         }
+        return resp;
+    }
+    public List<Candidato>obtenerDatosC(String usuario) throws Exception
+    {
+        Conexion db = new Conexion();
+        Connection conexion = null;
+        ResultSet rs;
+        List<Candidato>lst=new ArrayList();
+        try 
+        {
+            conexion = db.getConnection();
+            String sql="select u.idusuario, c.idcandidato,c.nombre,c.iddepto,c.idgenero,c.nacionalidad,c.fechanacimiento,c.direccion,c.foto,d.iddepto,d.nombredepto,g.idgenero,g.genero from candidato c inner join departamento d on c.iddepto=d.iddepto inner join genero g on c.idgenero=g.idgenero inner join usuario u on c.idcandidato =u.idusuario  where usuario=?";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            pre.setString(1, usuario);
+            rs=pre.executeQuery();
+            while(rs.next())
+            {
+                Departamento d =  new Departamento();
+                d.setIdDepto(rs.getInt("iddepto"));
+                d.setNombreDepto(rs.getString("nombredepto"));
+                
+                Genero g = new Genero();
+                g.setIdGenero(rs.getInt("idgenero"));
+                g.setGenero(rs.getString("genero"));
+                
+                Candidato c =  new Candidato();
+                c.setIdCandidato(rs.getInt("idcandidato"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setFechaNacimiento(rs.getString("fechanacimiento"));
+                c.setFoto(rs.getString("foto"));
+                c.setDepto(d);
+                c.setGenero(g);
+                c.setNacionalidad(rs.getString("nacionalidad"));
+                lst.add(c);
+
+            }
+        } 
+        catch (Exception e) 
+        {
+            throw e;
+        }
+        return lst;
+    }
+    
 }

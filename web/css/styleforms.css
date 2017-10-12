@@ -255,7 +255,7 @@ input[type='text'],input[type="email"],input[type="number"],input[type="password
   border-radius: 3px;
 }
 
-/*Estilo radio buttons*/
+/*Estilo radio buttons
 
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
@@ -309,7 +309,7 @@ input[type='text'],input[type="email"],input[type="number"],input[type="password
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
-}
+}*/
 /* File Chooser*/
 
 .image-preview-input {
@@ -369,5 +369,7 @@ input[type='text'],input[type="email"],input[type="number"],input[type="password
 #copyRight{
     color: #45B39D;
 }
+
+
 
 

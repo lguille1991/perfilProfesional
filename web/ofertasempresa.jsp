@@ -81,10 +81,7 @@
         </script>
 </head>
 <body class="bodyFormulario" id="home">
-<div class="container-fluid">
-<!--Barra de menú-->
-<jsp:include page="plantilla/menu.jsp" />
-<% 
+<%
     CrudArea crar   = new CrudArea();
     CrudCargo crca  = new CrudCargo();
     CrudNivelExperiencia crne = new CrudNivelExperiencia();
@@ -92,7 +89,14 @@
     CrudCandidato crucand = new CrudCandidato();
     CrudEmpresa crempre = new CrudEmpresa();
     CrudOferta crof = new CrudOferta();
-%>
+    if (session.getAttribute("user") != null){
+        response.sendRedirect("index.jsp");
+    }
+%>    
+    <div class="container-fluid">
+        <div class="row" style="width: 100%; position: fixed;z-index: 10;">
+            <jsp:include page="plantilla/menu.jsp" />
+        </div>
 <div class="row">
     <!--Cambiar id modal-fade segun formulario con data-toggle="modal" data-target="#id" 
     con esto se manda a llamar el modal  en las etiquetas <a></a> o <button></button> -->

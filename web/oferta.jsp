@@ -12,19 +12,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="plantilla/libs.jsp"/>
-        <% 
-            CrudArea crar   = new CrudArea();
-            CrudCargo crca  = new CrudCargo();
-            CrudNivelExperiencia crne = new CrudNivelExperiencia();
-            CrudTipoContratacion crtc = new CrudTipoContratacion();
-            CrudCandidato crucand = new CrudCandidato();
-            CrudEmpresa crempre = new CrudEmpresa();
-        %>
         <title>Oferta</title>
     </head>
     <body class="bodyFormulario">
-        <div class="container-fluid">
+    <%
+        CrudArea crar   = new CrudArea();
+        CrudCargo crca  = new CrudCargo();
+        CrudNivelExperiencia crne = new CrudNivelExperiencia();
+        CrudTipoContratacion crtc = new CrudTipoContratacion();
+        CrudCandidato crucand = new CrudCandidato();
+        CrudEmpresa crempre = new CrudEmpresa();
+        if (session.getAttribute("user") != null){
+            response.sendRedirect("index.jsp");
+        }
+    %>    
+    <div class="container-fluid">
+        <div class="row" style="width: 100%; position: fixed;z-index: 10;">
             <jsp:include page="plantilla/menu.jsp" />
+        </div>
                 <div class="row main">
                     <div class="main-login main-center">
                     <h2>Oferta</h2>

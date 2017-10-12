@@ -133,5 +133,33 @@ public class CrudEmpresa extends Conexion {
         }
         return 0;
     }
+    public List<Empresa>empresas() throws Exception
+    {
+        Conexion db = new Conexion();
+        Connection conexion = null;
+        ResultSet res;
+        List<Empresa>lst= new ArrayList();
+        try {
+            conexion = db.getConnection();
+            String sql="select * from empresa order by random() limit 4";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            res = pre.executeQuery();
+            while(res.next())
+            {
+                Empresa emp= new Empresa();
+                emp.setIdEmpresa(res.getInt("idempresa"));
+                emp.setActividad(res.getString("actividad"));
+                emp.setDescripcion(res.getString("descripcion"));
+                emp.setEmail(res.getString("email"));
+                emp.setTelefono(res.getString("telefono"));
+                emp.setNombreEmpresa(res.getString("nombreempresa"));
+ 
+                lst.add(emp);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return lst;
+    }
     
 }

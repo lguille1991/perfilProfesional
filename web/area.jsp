@@ -30,10 +30,16 @@
         </script>
     </head>
     <body class="bodyFormulario" id="home">
-        <div class="container-fluid">
-
+    <%
+        CrudArea ar = new CrudArea();
+        if (session.getAttribute("user") != null){
+            response.sendRedirect("index.jsp");
+        }
+    %>    
+    <div class="container-fluid">
+        <div class="row" style="width: 100%; position: fixed;z-index: 10;">
             <jsp:include page="plantilla/menu.jsp" />
-            <% CrudArea ar = new CrudArea();%>
+        </div> 
             <div class="row">
                 <!--Cambiar id modal-fade segun formulario con data-toggle="modal" data-target="#id" 
                 con esto se manda a llamar el modal  en las etiquetas <a></a> o <button></button> -->

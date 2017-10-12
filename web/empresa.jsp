@@ -22,13 +22,18 @@
         </script>
     </head>
     <body class="bodyFormulario" id="home">
-        <div class="container-fluid">
-            <jsp:include page="plantilla/menu.jsp"/>
-            <%
-                CrudEmpresa cemp = new CrudEmpresa();
-                HttpSession sess = request.getSession(true); //use false to use the existing session
-                String idu = (String) sess.getAttribute("txtIdUsuario");
-            %>
+    <%
+        CrudEmpresa cemp = new CrudEmpresa();
+        HttpSession sess = request.getSession(true); //use false to use the existing session
+        String idu = (String) sess.getAttribute("txtIdUsuario");
+        if (session.getAttribute("user") != null){
+            response.sendRedirect("index.jsp");
+        }
+    %>    
+    <div class="container-fluid">
+        <div class="row" style="width: 100%; position: fixed;z-index: 10;">
+            <jsp:include page="plantilla/menu.jsp" />
+        </div>
                 <div class="row main">
                     <div class="main-login main-center">
                             <h3><strong>EMPRESA</strong></h3>

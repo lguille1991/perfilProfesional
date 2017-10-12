@@ -12,20 +12,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-               
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      
         <jsp:include page="plantilla/libs.jsp"/>
         <title>Candidato</title>
     </head>
+    <body class="bodyFormulario" id="home">
     <%
         CrudCandidato ccan=new CrudCandidato(); 
         HttpSession sess = request.getSession(true); //use false to use the existing session
         String idu = (String) sess.getAttribute("txtIdUsuario");
-    %>
-    <body class="bodyFormulario">
-        <div class="container-fluid">
+        if (session.getAttribute("user") != null){
+            response.sendRedirect("index.jsp");
+        }
+    %>    
+    <div class="container-fluid">
+        <div class="row" style="width: 100%; position: fixed;z-index: 10;">
             <jsp:include page="plantilla/menu.jsp" />
-                         
+        </div> 
                 <div class="row main">
                     <div class="main-login main-center">
                     <h2>Candidato</h2>

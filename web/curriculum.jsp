@@ -24,15 +24,20 @@
           });     
     </script>
 </head>
-<body id="home">
-<div class="container-fluid">
-<!--Barra de menú-->
-<jsp:include page="plantilla/menu.jsp" />
-<% 
-CrudHabilidad ch    = new CrudHabilidad();
-CrudCvHabilidad cvh = new CrudCvHabilidad();
-CrudIdioma ci       = new CrudIdioma();
-%>
+<body class="bodyFormulario" id="home">
+<%
+
+        CrudHabilidad ch    = new CrudHabilidad();
+        CrudCvHabilidad cvh = new CrudCvHabilidad();
+        CrudIdioma ci       = new CrudIdioma();
+        if (session.getAttribute("user") != null){
+            response.sendRedirect("index.jsp");
+        }
+%>    
+    <div class="container-fluid">
+        <div class="row" style="width: 100%; position: fixed;z-index: 10;">
+            <jsp:include page="plantilla/menu.jsp" />
+        </div> 
 <div class="row">
     <!--Cambiar id  segun formulario con data-toggle="modal" data-target="#id" 
     con esto se manda a llamar el modal  en las etiquetas <a></a> o <button></button> -->
