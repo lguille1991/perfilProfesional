@@ -13,6 +13,45 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        <jsp:include page="plantilla/libs.jsp" />
         <title>Oferta</title>
+        <!--Esta es la función para buscar dentro de la tabla
+            Necesitas el form donde esta el text de busquedacompleto para remplazar el normal
+        -->
+        <script language="javascript">
+		function doSearch()
+		{
+			var tableReg = document.getElementById('tblMostrar');//Este es para saber en que tabla buscar
+			var searchText = document.getElementById('buscar').value.toLowerCase();//Y el nombre del txt
+			var cellsOfRow="";
+			var found=false;
+			var compareWith="";
+ 
+			// Recorremos todas las filas con contenido de la tabla
+			for (var i = 1; i < tableReg.rows.length; i++)
+			{
+				cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+				found = false;
+				// Recorremos todas las celdas
+				for (var j = 0; j < cellsOfRow.length && !found; j++)
+				{
+					compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+					// Buscamos el texto en el contenido de la celda
+					if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1))
+					{
+						found = true;
+					}
+				}
+				if(found)
+				{
+					tableReg.rows[i].style.display = '';
+				} else {
+					// si no ha encontrado ninguna coincidencia, esconde la
+					// fila de la tabla
+					tableReg.rows[i].style.display = 'none';
+				}
+			}
+		}
+	</script>
+        
         <script Language='JavaScript'>
             
           function cargar(codigo, nombreo, area,cargo,experiencia,contra,departamento,empresa,vacantes,descripcion,edadmin,edadmax)
@@ -261,9 +300,15 @@
          <h3><strong>OFERTA</strong></h3>
         <!--Tabla para mostrar registros-->  
         <div class="row ">
-            <div class="col-md-10"><input type="text" name="search"  id="buscar" placeholder="Busqueda"></div><div class="col-md-2"> <a id="buttontbl" class="btn btn-primary pull-right" onclick="cargar('','','0','0','0','0','0','0','0','','0','0')"  href="" data-toggle="modal" data-target="#habilidad">Nuevo</a></div>
+            <div class="col-md-10">
+            <form>
+		<input id="buscar" type="text" placeholder="Busqueda" onkeyup="doSearch()" />
+            </form>
+            </div>
+            <!--<input type="text" name="search"  id="buscar" placeholder="Busqueda">-->
+            <div class="col-md-2"> <a id="buttontbl" class="btn btn-primary pull-right" onclick="cargar('','','0','0','0','0','0','0','0','','0','0')"  href="" data-toggle="modal" data-target="#habilidad">Nuevo</a></div>
         </div>
-        <table class="table active " id="tblMostrar" >
+        <table class="table active " id="tblMostrar" name="tblMostrar">
             <thead >
             <tr id="headertbl">
                <th>Código</th>
