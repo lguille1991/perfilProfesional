@@ -47,7 +47,8 @@ public class ProcesarArea extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("area.jsp");
+            
+            request.getRequestDispatcher("area.jsp").forward(request, response);
             
         } catch (Exception e) {
             request.setAttribute("ERROR", e.toString());
