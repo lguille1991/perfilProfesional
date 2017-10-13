@@ -61,13 +61,8 @@
 
                                         <h3><strong>AREA</strong></h3>
 
-                                        <label for="codigo" class="cols-sm-2 control-label">C&oacute;digo</label>
-                                        <div class="cols-sm-10">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true" ></i></span>
-                                                <input type="text" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" readonly="" />
-                                            </div>
-                                        </div>
+                                         <input type="text" class="form-control" name="txtCodigo" id="txtCodigo" style="display: none;" placeholder="Código" readonly="" />
+                                           
 
                                         <br>
                                         <div class="form-group">

@@ -20,7 +20,7 @@ public class CrudIdioma extends Conexion{
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="insert into idioma(nombreidioma) values(?)";
+            String sql="insert into idioma(ididioma,nombreidioma) values((select max(ididioma)+1 from idioma idi),?)";
             PreparedStatement pre = conexion.prepareStatement(sql);           
             
             

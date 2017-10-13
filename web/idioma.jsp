@@ -65,7 +65,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true" ></i></span>
-                                                <input type="text" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" readonly="" />
+                                                <input type="text" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" />
                                             </div>
                                         </div>
 
@@ -135,7 +135,7 @@
                <td><%= i.getNombreIdioma()%></td>
 
                <td id="colAccion" >
-                  <a   class="btn btn-primary" href="" data-toggle="modal" data-target="#idioma" onclick="cargar(<%= i.getIdIdioma()%>,'<%=i.getNombreIdioma()%>' )" > Seleccionar</a>
+                  <a   class="btn btn-primary" id="button" href="" data-toggle="modal" data-target="#idioma" onclick="cargar(<%= i.getIdIdioma()%>, '<%=i.getNombreIdioma() %>')" ><span class="glyphicon glyphicon-plus-sign"></span></a>
                </td>
            </tr>
            <% } %>
