@@ -25,7 +25,7 @@ public class ProcesarArea extends HttpServlet {
         
         Area ar = new Area();
         CrudArea crar = new CrudArea();
-        String val = null;
+        String respuesta = null;
         try {
             
             ar.setNombreArea(request.getParameter("txtNombreArea"));
@@ -33,20 +33,20 @@ public class ProcesarArea extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 crar.insertarArea(ar);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 ar.setIdArea(Integer.parseInt(request.getParameter("txtCodigo")));
                 crar.modificarArea(ar);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable alerta'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 ar.setIdArea(Integer.parseInt(request.getParameter("txtCodigo")));
                 crar.eliminarArea(ar);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("area.jsp");
             
         } catch (Exception e) {

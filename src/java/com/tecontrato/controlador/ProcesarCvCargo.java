@@ -27,7 +27,7 @@ public class ProcesarCvCargo extends HttpServlet {
         
         CvCargo cc = new CvCargo();
         CrudCvCargo crcvca = new CrudCvCargo();
-        String val = null;
+        String respuesta = null;
         
         try {
             
@@ -36,18 +36,18 @@ public class ProcesarCvCargo extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 crcvca.insertarCvCargo(cc);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 crcvca.modificarCvCargo(cc);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable alerta'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 crcvca.eliminarCvCargo(cc);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("index.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

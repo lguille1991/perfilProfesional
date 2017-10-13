@@ -40,15 +40,15 @@
         </script>
     </head>
     <body class="bodyFormulario" id="home">
-   <%
-        CrudEmpresa cemp = new CrudEmpresa();
-        HttpSession sess = request.getSession(true); //use false to use the existing session
-        String idu = (String) sess.getAttribute("txtIdUsuario");
-        if (session.getAttribute("user") != null){
-            response.sendRedirect("index.jsp");
-        }
-    %>    
-    <div class="container-fluid">
+        <%
+            CrudEmpresa cemp = new CrudEmpresa();
+            HttpSession sess = request.getSession(true); //use false to use the existing session
+            String idu = (String) sess.getAttribute("txtIdUsuario");
+            if (session.getAttribute("user") != null){
+                response.sendRedirect("index.jsp");
+            }
+        %>
+<div class="container-fluid">
         <div class="row" style="width: 100%; position: fixed;z-index: 10;">
             <jsp:include page="plantilla/menu.jsp" />
         </div>
@@ -75,31 +75,31 @@
                             <label for="txtNombre" class="cols-sm-2 control-label">Nombre</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="txtNombreEmpresa" id="txtNombreEmpresa"  placeholder="Nombre de la empresa"/>
+                                <input type="text" class="form-control" name="txtNombreEmpresa" id="txtNombreEmpresa"  placeholder="Nombre de la empresa" required="true"/>
                             <br>
                             </div>
                             <label for="txtActividad" class="cols-sm-2 control-label">Actividad</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="txtActividad" id="txtActividad"  placeholder="Ingrese la actividad de la empresa"/>
+                                <input type="text" class="form-control" name="txtActividad" id="txtActividad"  placeholder="Ingrese la actividad de la empresa" required="true"/>
                             </div>
                             <br>
                             <label for="txtDescripcion" class="cols-sm-2 control-label">Descripcion</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></span>
-                                <textarea class="form-control" rows="2" name="txtDescripcion" id="txtDescripcion" placeholder="Descripción"></textarea>
+                                <textarea class="form-control" rows="2" name="txtDescripcion" id="txtDescripcion" placeholder="Descripción" required="true"></textarea>
                             </div>
                             <br>
                             <label for="txtEmail" class="cols-sm-2 control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-                                <input type="email" class="form-control" name="txtEmail" id="txtEmail"  placeholder="Ingrese el correo electronico"/>
+                                <input type="email" class="form-control" name="txtEmail" id="txtEmail"  placeholder="Ingrese el correo electronico" required="true"/>
                             </div>
                             <br>
                             <label for="txtTelefono" class="cols-sm-2 control-label">Telefono</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono" placeholder="(503)0000-0000" />
+                                <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono" placeholder="(503)0000-0000" required="true"/>
                             </div>
                                 <div id="botones">
                                     <button type="submit" name="btnGuardar" class="btn btn-primary glyphicon glyphicon-floppy-disk"> Guardar</button>
@@ -121,9 +121,11 @@
         </div>
     </div><!--End modal-->
     
-    
+    <div style="margin-top: 60px;">
+        ${respuesta}
+    </div>
 
-    <div class="row main" style="margin-top: 0;">
+    <div class="row main" style="margin-top: 25px;">
     <div class=" main-tbl">
          <h3><strong>EMPRESA</strong></h3>
         <!--Tabla para mostrar registros-->  

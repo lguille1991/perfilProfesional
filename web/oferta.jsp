@@ -30,6 +30,9 @@
         <div class="row" style="width: 100%; position: fixed;z-index: 10;">
             <jsp:include page="plantilla/menu.jsp" />
         </div>
+        <div style="margin-top: 60px;">
+            ${respuesta}
+        </div>
                 <div class="row main">
                     <div class="main-login main-center">
                     <h2>Oferta</h2>

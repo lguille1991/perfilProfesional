@@ -17,40 +17,40 @@
               $('.phone').mask('(000)0000-0000');
           }); 
         </script>
-         <script>
-        function validarPass(){
-        var p1 = $('#txtClave1').val();
-        var p2 =  $('#txtClave').val();
-        var msj;
-        if (p1 != p2) {
-            msj = "<div class='alert alert-danger alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color:#C0392B;'>Error!</strong> Las contraseñas no coinciden.</div>";
-            $('#mensaje').html(msj);
-            document.frmUsuario.btnGuardar.disabled=true;
-          }else{ 
-            msj = "";
-            $('#mensaje').html(msj);
-            document.frmUsuario.btnGuardar.disabled=false;
-          }
-        }   
-            </script>
+        <script>
+            function validarPass(){
+                var p1 = $('#txtClave1').val();
+                var p2 =  $('#txtClave').val();
+                var msj;
+                if (p1 != p2) {
+                    msj = "<div class='alert alert-danger alert-dismissable fade in'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color:#C0392B;'>Error!</strong> Las contraseñas no coinciden.</div>";
+                    $('#mensaje').html(msj);
+                    document.frmUsuario.btnGuardar.disabled=true;
+                }else{ 
+                    msj = "";
+                    $('#mensaje').html(msj);
+                    document.frmUsuario.btnGuardar.disabled=false;
+                }
+            }   
+        </script>
         <title>Usuario Empresa</title>
     </head>
     <body id="home" class="bodyFormulario">
-    <%
-        CrudEmpresa cem = new CrudEmpresa();
-        int idEmpresa = cem.ultimoId();
-        if (session.getAttribute("user")!= null){
-            response.sendRedirect("index.jsp");
-        }else{ }  
-        
-    %>   
+        <%
+            CrudEmpresa cem = new CrudEmpresa();
+            int idEmpresa = cem.ultimoId();
+            if (session.getAttribute("user")!= null){
+                response.sendRedirect("index.jsp");
+            }else{ }  
+        %> 
         <div class="container-fluid">
             <div class="row" style="width: 100%; position: fixed;z-index: 10;">
                 <jsp:include page="plantilla/menu.jsp" />
             </div>
             <div class="row main">
-                <div class="main-login main-center"  style="margin-top: 50px ;">
+                <div class="main-login main-center" style="margin-top: 50px ;">
                     <h3><strong>USUARIO EMPRESA</strong></h3>
+                    <div id="mensaje" class="col-md-12"></div>
                     <form class="" method="GET" action="procesarUsuario" name="frmUsuario">
                             <div class="form-group">
                                     <div class="cols-sm-10">
@@ -74,7 +74,7 @@
                                     <div class="cols-sm-10">
                                             <div class="input-group">
                                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                                                    <input type="text" class="form-control" name="txtUsuario" id="txtUsuario" placeholder="Nombre de usuario" required="true">
+                                                    <input type="text" class="form-control" name="txtUsuario" id="txtUsuario" placeholder="Nombre de usuario" required="true"/>
                                             </div>
                                     </div>
                             </div>
@@ -84,7 +84,7 @@
                                     <div class="cols-sm-10">
                                             <div class="input-group">
                                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-                                                    <input type="password" class="form-control" name="txtClave1" id="txtClave1"  placeholder="Ingrese su contraseña" required="true">
+                                                    <input type="password" class="form-control" name="txtClave1" id="txtClave1"  placeholder="Ingrese su contraseña" required="true"/>
                                             </div>
                                     </div>
                             </div>

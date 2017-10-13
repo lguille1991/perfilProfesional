@@ -22,20 +22,23 @@
         </script>
     </head>
     <body class="bodyFormulario" id="home">
-    <%
-        CrudEmpresa cemp = new CrudEmpresa();
-        HttpSession sess = request.getSession(true); //use false to use the existing session
-        String idu = (String) sess.getAttribute("txtIdUsuario");
-        if (session.getAttribute("user") != null){
-            response.sendRedirect("index.jsp");
-        }
-    %>    
-    <div class="container-fluid">
-        <div class="row" style="width: 100%; position: fixed;z-index: 10;">
-            <jsp:include page="plantilla/menu.jsp" />
-        </div>
+            <%
+                CrudEmpresa cemp = new CrudEmpresa();
+                HttpSession sess = request.getSession(true); //use false to use the existing session
+                String idu = (String) sess.getAttribute("txtIdUsuario");
+                if (session.getAttribute("user") != null){
+                    response.sendRedirect("index.jsp");
+                }
+            %> 
+            <div class="container-fluid">
+                <div class="row" style="width: 100%; position: fixed;z-index: 10;">
+                    <jsp:include page="plantilla/menu.jsp" />
+                </div>
+                <div style="margin-top: 60px;">
+                    ${respuesta}
+                </div>
                 <div class="row main">
-                    <div class="main-login main-center">
+                    <div class="main-login main-center" style="margin-top: 25px;">
                             <h3><strong>EMPRESA</strong></h3>
                             <form class="" method="GET" action="procesarEmpresa">
                                     <div class="form-group">
@@ -43,7 +46,7 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtNombreEmpresa" id="txtNombreEmpresa"  placeholder="Nombre de la empresa"/>
+                                                            <input type="text" class="form-control" name="txtNombreEmpresa" id="txtNombreEmpresa"  placeholder="Nombre de la empresa" required="true"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -63,7 +66,7 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtActividad" id="txtActividad"  placeholder="Ingrese la actividad de la empresa"/>
+                                                            <input type="text" class="form-control" name="txtActividad" id="txtActividad"  placeholder="Ingrese la actividad de la empresa" required="true"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -73,7 +76,7 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-file" aria-hidden="true"></i></span>
-                                                            <textarea class="form-control" rows="2" name="txtDescripcion" id="txtDescripcion" placeholder="Descripción"></textarea>
+                                                            <textarea class="form-control" rows="2" name="txtDescripcion" id="txtDescripcion" placeholder="Descripción" required="true"></textarea>
                                                     </div>
                                             </div>
                                     </div>
@@ -83,7 +86,7 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-                                                            <input type="email" class="form-control" name="txtEmail" id="txtEmail"  placeholder="Ingrese el correo electronico"/>
+                                                            <input type="email" class="form-control" name="txtEmail" id="txtEmail"  placeholder="Ingrese el correo electronico" required="true"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -93,13 +96,13 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono" />
+                                                            <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono" required="true"/>
                                                     </div>
                                             </div>
                                     </div>
 
                                     <div id="botones">
-                                        <button type="submit" class="btn btn-success" name="btnGuardar">
+                                        <button type="submit" class="btn btn-success" name="btnGuardar" id="btnGuardar">
                                             <span class="glyphicon glyphicon-floppy-saved"></span> Guardar
                                         </button>
                                         <button type="reset" class="btn btn-primary">

@@ -21,14 +21,15 @@ public class CrudEmpresa extends Conexion {
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="insert into empresa(actividad,descripcion,email,telefono,nombreempresa) values(?,?,?,?,?)";
+            String sql="insert into empresa(idempresa,actividad,descripcion,email,telefono,nombreempresa) values(?,?,?,?,?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);           
             
-            pre.setString(1, emp.getActividad());
-            pre.setString(2, emp.getDescripcion());
-            pre.setString(3, emp.getEmail());
-            pre.setString(4, emp.getTelefono());
-            pre.setString(5, emp.getNombreEmpresa());
+            pre.setInt(1, emp.getIdEmpresa());
+            pre.setString(2, emp.getActividad());
+            pre.setString(3, emp.getDescripcion());
+            pre.setString(4, emp.getEmail());
+            pre.setString(5, emp.getTelefono());
+            pre.setString(6, emp.getNombreEmpresa());
             
             pre.executeUpdate(); 
             
@@ -72,10 +73,11 @@ public class CrudEmpresa extends Conexion {
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="delete from empresa where idempresa=?";
-            PreparedStatement pre = conexion.prepareStatement(sql);           
+            String sql="delete from empresa where idempresa=?;delete from usuario where idusuario=?";
+            PreparedStatement pre = conexion.prepareStatement(sql);
             
             pre.setInt(1, emp.getIdEmpresa());
+            pre.setInt(2, emp.getIdEmpresa());
             
             pre.executeUpdate(); 
             
@@ -133,6 +135,7 @@ public class CrudEmpresa extends Conexion {
         }
         return 0;
     }
+    
     public List<Empresa>empresas() throws Exception
     {
         Conexion db = new Conexion();

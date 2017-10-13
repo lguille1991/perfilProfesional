@@ -38,7 +38,7 @@ public class ProcesarEducacion extends HttpServlet {
         
         Educacion edu = new Educacion();
         CrudEducacion cedu = new CrudEducacion();
-        String val = null;
+        String respuesta = null;
         
         try {
             
@@ -51,19 +51,19 @@ public class ProcesarEducacion extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 cedu.insertarEducacion(edu);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 
                 cedu.modificarEducacion(edu);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable alerta'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 cedu.eliminarEducacion(edu);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("educacion.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

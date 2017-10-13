@@ -22,17 +22,16 @@ public class CrudCandidato extends Conexion {
         Connection conexion = null;
         try {
             conexion = db.getConnection();
-            String sql="insert into candidato(iddepto, idgenero, nombre, nacionalidad, fechanacimiento, direccion, foto) values(?,?,?,?,?,?,?)";
+            String sql="insert into candidato(idcandidato,iddepto, idgenero, nombre, nacionalidad, fechanacimiento, direccion, foto) values(?,?,?,?,?,?,?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);           
-            
-            pre.setInt(1, cd.getDepto().getIdDepto());
-            pre.setInt(2, cd.getGenero().getIdGenero());
-            pre.setString(3, cd.getNombre());
-            pre.setString(4, cd.getNacionalidad());
-            pre.setDate(5, Utilidades.convertFromStrToSqlDate(cd.getFechaNacimiento(), "yyyy-MM-dd"));
-            pre.setString(6, cd.getDireccion());
-            pre.setString(7, cd.getFoto());
-            
+            pre.setInt(1, cd.getIdCandidato());
+            pre.setInt(2, cd.getDepto().getIdDepto());
+            pre.setInt(3, cd.getGenero().getIdGenero());
+            pre.setString(4, cd.getNombre());
+            pre.setString(5, cd.getNacionalidad());
+            pre.setDate(6, Utilidades.convertFromStrToSqlDate(cd.getFechaNacimiento(), "yyyy-MM-dd"));
+            pre.setString(7, cd.getDireccion());
+            pre.setString(8, cd.getFoto());       
             pre.executeUpdate(); 
             
         } catch (Exception e) {
@@ -55,7 +54,7 @@ public class CrudCandidato extends Conexion {
             pre.setInt(2, cd.getGenero().getIdGenero());
             pre.setString(3, cd.getNombre());
             pre.setString(4, cd.getNacionalidad());
-            pre.setString(5, cd.getFechaNacimiento());
+            pre.setDate(5, Utilidades.convertFromStrToSqlDate(cd.getFechaNacimiento(), "yyyy-MM-dd"));
             pre.setString(6, cd.getDireccion());
             pre.setString(7, cd.getFoto());
             pre.setInt(8, cd.getIdCandidato());
@@ -101,8 +100,8 @@ public class CrudCandidato extends Conexion {
         {
             conexion = db.getConnection();
             String sql="select candidato.idcandidato, departamento.iddepto, departamento.nombredepto, genero.idgenero, genero.genero, nombre, nacionalidad, fechanacimiento,direccion, foto from candidato  "
-                       +"inner join departamento on candidato.iddepto=departamento.iddepto"
-                       +"inner join genero on candidato.idgenero=genero.idgenero";
+                       +"inner join departamento on candidato.iddepto=departamento.iddepto "
+                       +"inner join genero on candidato.idgenero=genero.idgenero order by candidato.idcandidato";
             PreparedStatement pre = conexion.prepareCall(sql);
             res=pre.executeQuery();
             while(res.next())

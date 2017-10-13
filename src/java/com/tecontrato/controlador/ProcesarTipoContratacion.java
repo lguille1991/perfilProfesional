@@ -26,7 +26,7 @@ public class ProcesarTipoContratacion extends HttpServlet {
         
         TipoContratacion tc = new TipoContratacion();
         CrudTipoContratacion ctc = new CrudTipoContratacion();
-        String val = null;
+        String respuesta = null;
         
         try {
             
@@ -34,18 +34,18 @@ public class ProcesarTipoContratacion extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 ctc.insertarTipoContratacion(tc);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 ctc.modificarTipoContratacion(tc);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 ctc.eliminarTipoContratacion(tc);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("index.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

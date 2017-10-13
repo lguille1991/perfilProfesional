@@ -40,7 +40,7 @@ public class ProcesarTelefono extends HttpServlet {
         
         Telefono tel = new Telefono();
         CrudTelefono crte = new CrudTelefono();
-        String val = null;
+        String respuesta = null;
         
         try {
             
@@ -50,18 +50,18 @@ public class ProcesarTelefono extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 crte.insertarTelefono(tel);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 crte.modificarTelefono(tel);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 crte.eliminarTelefono(tel);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("index.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

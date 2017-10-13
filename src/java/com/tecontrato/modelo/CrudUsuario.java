@@ -20,7 +20,7 @@ public class CrudUsuario extends Conexion{
         try 
         {
             conexion = db.getConnection();
-            String sql="insert into usuario(idrol,usuario,clave) values(?,?,?)";
+            String sql="insert into usuario(idusuario, idrol,usuario,clave) values((select max(idusuario)+1 from usuario us),?,?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, us.getRol().getIdRol());
             pre.setString(2, us.getUsuario());
@@ -148,6 +148,7 @@ public class CrudUsuario extends Conexion{
         }
         return 0;
     }
+    
      public int autenticarUsuario(String usuario, String contrasena) throws Exception
     {
         Conexion db = new Conexion();
@@ -175,6 +176,7 @@ public class CrudUsuario extends Conexion{
          }
         return resp;
     }
+     
     public List<Candidato>obtenerDatosC(String usuario) throws Exception
     {
         Conexion db = new Conexion();

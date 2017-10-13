@@ -32,7 +32,7 @@ public class ProcesarOferta extends HttpServlet {
         
         Oferta ofe = new Oferta();
         CrudOferta crof = new CrudOferta();
-        String val = null;
+        String respuesta = null;
         
         try {
             
@@ -54,7 +54,7 @@ public class ProcesarOferta extends HttpServlet {
                 ofe.setEdadMax(Integer.parseInt(request.getParameter("txtEdadMax")));
 
                 crof.insertarOferta(ofe);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 
@@ -72,15 +72,15 @@ public class ProcesarOferta extends HttpServlet {
                 ofe.setEdadMax(Integer.parseInt(request.getParameter("txtEdadMax")));
                 
                 crof.modificarOferta(ofe);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 ofe.setIdOferta(Integer.parseInt(request.getParameter("txtIdOferta")));
                 crof.eliminarOferta(ofe);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("ofertasempresa.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

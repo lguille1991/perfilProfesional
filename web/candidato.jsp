@@ -12,25 +12,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+               
         <jsp:include page="plantilla/libs.jsp"/>
         <title>Candidato</title>
     </head>
-    <body class="bodyFormulario" id="home">
-    <%
-        CrudCandidato ccan=new CrudCandidato(); 
-        HttpSession sess = request.getSession(true); //use false to use the existing session
-        String idu = (String) sess.getAttribute("txtIdUsuario");
-        if (session.getAttribute("user") != null){
-            response.sendRedirect("index.jsp");
-        }
-    %>    
-    <div class="container-fluid">
+    <script>
+        jQuery(function(){
+            $('.al-date').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'es',
+                autoclose: true,
+                startDate: "01/01/1927",
+                endDate: "31/12/2100",
+                startView: 2,
+                todayBtn: "linked"
+            });
+          });
+    </script>
+    <body class="bodyFormulario">
+        <%
+            CrudCandidato ccan=new CrudCandidato(); 
+            HttpSession sess = request.getSession(true); //use false to use the existing session
+            String idu = (String) sess.getAttribute("txtIdUsuario");
+            if (session.getAttribute("user") != null){
+                response.sendRedirect("index.jsp");
+            }
+        %>
+        <div class="container-fluid">
         <div class="row" style="width: 100%; position: fixed;z-index: 10;">
             <jsp:include page="plantilla/menu.jsp" />
-        </div> 
+        </div>
+        <div style="margin-top: 60px;">
+            ${respuesta}
+        </div>
                 <div class="row main">
-                    <div class="main-login main-center">
+                    <div class="main-login main-center" style="margin-top: 25px;">
                     <h2>Candidato</h2>
                             <form class="" method="get" action="procesarCandidato">
                                     
@@ -39,7 +56,7 @@
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtNombre" id="txtNombre"  placeholder="Nombre" required="true"/>
+                                                            <input type="text" class="form-control" name="txtNombreCandidato" id="txtNombreCandidato"  placeholder="Nombre" required="true" autofocus="true" />
                                                     </div>
                                             </div>
                                     </div>
@@ -51,16 +68,27 @@
                                                     </div>
                                             </div>
                                     </div>
+                                                    
+                                    <div class="form-group">
+                                            <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <input type="hidden" class="form-control" name="txtIdRol" id="txtIdRol"  placeholder="Código" required="true" value="3"/>
+                                                    </div>
+                                            </div>
+                                    </div>
                                 
                                     <div class="form-group">
                                             <label for="genero" class="cols-sm-2 control-label">Genero</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-venus-mars" aria-hidden="true"></i></span>
-                                                            <input type="radio" id="test1" name="genero" required="true" value="1" checked>
-                                                            <label for="test1">Femenino</label>
-                                                            <input type="radio" id="test2" name="genero" required="true" value="2">
-                                                            <label for="test2">Masculino</label>
+                                                            <%
+                                                                List<Genero>ls2=ccan.listaGenero();
+                                                                for(Genero ge:ls2){
+                                                            %>
+                                                            <input type="radio" id="<%=ge.getIdGenero() %>" name="genero" required="true" value="<%=ge.getIdGenero() %>" checked>
+                                                            <label for="<%=ge.getIdGenero() %>"><%=ge.getGenero() %></label>
+                                                            <%}%>
                                                     </div>
                                             </div>
                                     </div> 
@@ -87,7 +115,7 @@
                                             <label for="nacionalidad" class="cols-sm-2 control-label">Nacionalidad</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-map" aria-hidden="true"></i></span>
+                                                        <span class="input-group-addon"><i class="fa fa-map" aria-hidden="true"></i></span>
                                                             <input type="text" class="form-control" name="txtNacionalidad" id="txtNacionalidad"  placeholder="Nacionalidad" required="true"/>
                                                     </div>
                                             </div>
@@ -96,9 +124,9 @@
                                     <div class="form-group">
                                             <label for="fechaNacimiento" class="cols-sm-2 control-label">Fecha Nacimiento</label>
                                             <div class="cols-sm-10">
-                                                    <div class="input-group">
-                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-                                                            <input type="date" class="form-control" name="txtFechaNacimiento" id="txtFechaNacimiento" placeholder="Fecha Nacimiento" required="true"/>
+                                                    <div class="input-group date al-date" data-provide="datepicker">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                            <input type="text" class="form-control" name="txtFechaNacimiento" id="txtFechaNacimiento" placeholder="Fecha Nacimiento" required="true" readonly="" style="color: #000;"/>
                                                     </div>
                                             </div>
                                     </div>                

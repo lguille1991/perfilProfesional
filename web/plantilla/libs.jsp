@@ -14,6 +14,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/bootstrap-confirmation.js"></script>
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="js/bootstrap-datepicker/css/bootstrap-datepicker.css">
 <script src="js/script.js"></script>
 <script src="js/files.js"></script>
 <script src="js/jquery.mask.js"></script>
+<script src="js/bootstrap-datepicker/locales/bootstrap-datepicker.es.min"></script>
+<script src="js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>

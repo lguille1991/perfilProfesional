@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Nombre      : ProcesarCandidato
@@ -26,40 +27,53 @@ public class ProcesarCandidato extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         
-            Candidato can = new Candidato();
-            CrudCandidato crca = new CrudCandidato();
-            String val = null;
-         try {
-            
+        Candidato can = new Candidato();
+        CrudCandidato crca = new CrudCandidato();
+        String respuesta = null;
+        try {
+            can.setIdCandidato(Integer.parseInt(request.getParameter("txtCodigo")));
             can.setDepto(new Departamento(Integer.parseInt(request.getParameter("cmbDepto"))));
             can.setGenero(new Genero(Integer.parseInt(request.getParameter("genero"))));
-            can.setNombre(request.getParameter("txtNombre"));
+            can.setNombre(request.getParameter("txtNombreCandidato"));
             can.setNacionalidad(request.getParameter("txtNacionalidad"));
             can.setFechaNacimiento(request.getParameter("txtFechaNacimiento"));
             can.setDireccion(request.getParameter("txtDireccion"));
             can.setFoto(request.getParameter("foto"));
             
+            String txtIdRol = request.getParameter("txtIdRol");
+            HttpSession sessi = request.getSession(); 
+            sessi.setAttribute("txtIdRol", txtIdRol);
+            
             if(request.getParameter("btnGuardar")!=null)
             {
+                can.setIdCandidato(Integer.parseInt(request.getParameter("txtCodigo")));
                 crca.insertarCandidato(can);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
-                can.setIdCandidato(Integer.parseInt(request.getParameter("txtIdCandidaro")));
+                can.setIdCandidato(Integer.parseInt(request.getParameter("txtCodigo")));
                 crca.modificarCandidato(can);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable alerta'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
-                can.setIdCandidato(Integer.parseInt(request.getParameter("txtIdCandidaro")));
+                can.setIdCandidato(Integer.parseInt(request.getParameter("txtCodigo")));
                 crca.eliminarCandidato(can);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
-            response.sendRedirect("index.jsp");
-            } catch (Exception e) {
-                request.setAttribute("ERROR", e.toString());
+            request.setAttribute("respuesta", respuesta);
+            
+            if(txtIdRol.equals("3"))
+            {
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
+            else if(txtIdRol.equals("1")){
+
+                request.getRequestDispatcher("candidatoAdmin.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            request.setAttribute("ERROR", e.toString());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

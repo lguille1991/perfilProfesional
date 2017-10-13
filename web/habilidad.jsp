@@ -41,6 +41,9 @@
         <div class="row" style="width: 100%; position: fixed;z-index: 10;">
             <jsp:include page="plantilla/menu.jsp" />
         </div>
+        <div style="margin-top: 60px;">
+            ${respuesta}
+        </div>
 <div class="row">
     <!--Cambiar id modal-fade segun formulario con data-toggle="modal" data-target="#id" 
     con esto se manda a llamar el modal  en las etiquetas <a></a> o <button></button> -->

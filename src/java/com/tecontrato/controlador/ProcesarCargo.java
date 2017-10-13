@@ -25,7 +25,7 @@ public class ProcesarCargo extends HttpServlet {
         
         Cargo car = new Cargo();
         CrudCargo crcar = new CrudCargo();
-        String val = null;
+        String respuesta = null;
         
         try {
             
@@ -35,20 +35,20 @@ public class ProcesarCargo extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 crcar.insertarCargo(car);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 car.setIdCargo(Integer.parseInt(request.getParameter("txtCodigo")));
                 crcar.modificarCargo(car);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable alerta'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 car.setIdCargo(Integer.parseInt(request.getParameter("txtCodigo")));
                 crcar.eliminarCargo(car);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("cargo.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

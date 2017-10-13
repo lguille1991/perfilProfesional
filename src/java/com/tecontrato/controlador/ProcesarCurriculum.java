@@ -27,7 +27,7 @@ public class ProcesarCurriculum extends HttpServlet {
         
         Curriculum cv = new Curriculum();
         CrudCurriculum crcv = new CrudCurriculum();
-        String val = null;
+        String respuesta = null;
         
         try {
             
@@ -38,18 +38,18 @@ public class ProcesarCurriculum extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 crcv.insertarCurriculum(cv);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 crcv.modificarCurriculum(cv);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable alerta'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 crcv.eliminarCurriculum(cv);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             response.sendRedirect("index.jsp");
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

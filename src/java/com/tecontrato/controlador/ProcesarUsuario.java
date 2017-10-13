@@ -34,7 +34,7 @@ public class ProcesarUsuario extends HttpServlet {
         
         Usuario usu = new Usuario();
         CrudUsuario crudu = new CrudUsuario();
-        String val = null;
+        String respuesta = null;
         
         
         try {
@@ -51,25 +51,25 @@ public class ProcesarUsuario extends HttpServlet {
             if(request.getParameter("btnGuardar")!=null)
             {
                 crudu.insertarUsuario(usu);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 usu.setIdUsuario(Integer.parseInt(request.getParameter("txtIdUsuario")));
                 crudu.modificarUsuario(usu);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro Modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 usu.setIdUsuario(Integer.parseInt(request.getParameter("txtIdUsuario")));
                 crudu.eliminarUsuario(usu);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro Eliminar de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta", respuesta);
             if(txtIdRol.equals("2")){
-                response.sendRedirect("empresa.jsp");
+                request.getRequestDispatcher("empresa.jsp").forward(request, response);
             }
             else if(txtIdRol.equals("3")){
-                response.sendRedirect("candidato.jsp");
+                request.getRequestDispatcher("candidato.jsp").forward(request, response);
             }
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());

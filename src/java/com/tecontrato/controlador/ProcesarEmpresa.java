@@ -24,10 +24,10 @@ public class ProcesarEmpresa extends HttpServlet {
         
         Empresa emp = new Empresa();
         CrudEmpresa crem = new CrudEmpresa();
-        String val = null;
+        String respuesta = null;
         
         try {
-            
+            emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
             emp.setActividad(request.getParameter("txtActividad"));
             emp.setDescripcion(request.getParameter("txtDescripcion"));
             emp.setEmail(request.getParameter("txtEmail"));
@@ -42,31 +42,32 @@ public class ProcesarEmpresa extends HttpServlet {
             {
                 emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
                 crem.insertarEmpresa(emp);
-                val="Datos insertados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
                 crem.modificarEmpresa(emp);
-                val="Datos modificados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 emp.setIdEmpresa(Integer.parseInt(request.getParameter("txtIdEmpresa")));
                 crem.eliminarEmpresa(emp);
-                val="Datos eliminados correctamente";
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro eliminado de forma exitosa.</div>";
             }
             
-            request.setAttribute("valor", val);
+            request.setAttribute("respuesta",respuesta);
+            
             if(txtIdRol.equals("2"))
             {
-                response.sendRedirect("index.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
             else if(txtIdRol.equals("1")){
 
-                response.sendRedirect("empresaAdmin.jsp");
+                request.getRequestDispatcher("empresaAdmin.jsp").forward(request, response);
             }
-     } catch (Exception e) {
-         request.setAttribute("ERROR", e.toString());
-     }
+        } catch (Exception e) {
+            request.setAttribute("ERROR", e.toString());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
