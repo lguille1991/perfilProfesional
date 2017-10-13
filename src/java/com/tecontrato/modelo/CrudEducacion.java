@@ -52,7 +52,7 @@ public class CrudEducacion extends Conexion{
             pre.setString(2, edu.getEspecialidad());
             pre.setInt(3, edu.getAnioFinalizacion());  
             pre.setInt(4, edu.getCurriculum().getIdCurriculum());
-            
+            pre.setString(5, edu.getEspecialidad());
             
             pre.executeUpdate(); 
             

@@ -49,7 +49,7 @@ public class ProcesarIdioma extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("idioma.jsp");
             
         } catch (Exception e) {
             request.setAttribute("ERROR", e.toString());
