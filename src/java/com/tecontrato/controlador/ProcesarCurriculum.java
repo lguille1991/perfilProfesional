@@ -37,7 +37,7 @@ public class ProcesarCurriculum extends HttpServlet {
             
             if(request.getParameter("btnGuardar")!=null)
             {
-                crcv.insertarCurriculum(cv);
+                crcv.insertarCurriculum();
                 respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {

@@ -33,17 +33,19 @@ public class ProcesarCvIdioma extends HttpServlet {
         try {
             
             cvi.setCurriculum(new Curriculum(Integer.parseInt(request.getParameter("txtIdCurriculum"))));
-            cvi.setIdioma(new Idioma(Integer.parseInt(request.getParameter("txtIdIdioma"))));
-            cvi.setNivel(new Nivel(Integer.parseInt(request.getParameter("txtIdNivel"))));
+            cvi.setIdioma(new Idioma(Integer.parseInt(request.getParameter("cmbIdioma"))));
+            cvi.setNivel(new Nivel(Integer.parseInt(request.getParameter("nivel"))));
             
             if(request.getParameter("btnGuardar")!=null)
             {
                 ccvi.insertarCvIdioma(cvi);
                 respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
+            
             }else if(request.getParameter("btnModificar")!=null)
             {
                 ccvi.modificarCvIdioma(cvi);
                 respuesta="<div class='alert alert-success alert-dismissable alerta'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
+            
             }else if(request.getParameter("btnEliminar")!=null)
             {
                 ccvi.eliminarCvIdioma(cvi);
@@ -51,7 +53,7 @@ public class ProcesarCvIdioma extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("index.jsp");
+            request.getRequestDispatcher("perfil.jsp").forward(request, response);
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

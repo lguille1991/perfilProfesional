@@ -20,12 +20,12 @@
     String curriculum    ="";
     String dir           ="";
     String cerrar        ="";
-    String close        ="";
+    String close         ="";
     
     if (session != null) {
         if (session.getAttribute("user") != null) {
             close="";
-            cerrar = "<form action='logoutcontroller' method='post'><button id='button'><span class='glyphicon glyphicon-off'>Cerrar Sesión</span></button></form>";
+            cerrar = "<form action='logoutcontroller' method='post'><button id='buttonL' class='btn btn-primary'><span class='glyphicon glyphicon-off'>Cerrar Sesión</span></button></form>";
             iniciarsesion="none";
             registrarse="none";
             String name = (String) session.getAttribute("user");
@@ -50,6 +50,7 @@
                 gestionar="none";
                 consultas="none";
                 reportes="none";
+                dir="perfil.jsp";
             }else{
                 response.sendRedirect("index.jsp");
                 usuario="none";
@@ -76,8 +77,8 @@
     }
 %>
 <!--MENU-->
- <div class="row">
-    <div id='cssmenu' style="z-index: 1;">
+
+    <div id='cssmenu'>
         <ul>
            <li class='active'><a href='index.jsp'><span>TeContrato.com</span></a></li>
            <li class='pull-right' style='display: <%=iniciarsesion%>;'><a href='login.jsp'><span>Iniciar Sesión</span></a></li>
@@ -118,12 +119,12 @@
             <li class='has-sub' style="z-index: 1;display: <%=curriculum %>;"><a href='#'><span>Curriculum</span></a>
                <ul>
                    <li><a href='#'><span>Ver curriculum</span></a></li>
-                  <li><a href='#'><span>Editar curriculum</span></a></li>
+                   <li><a href='<%=dir%>'><span>Editar curriculum</span></a></li>
                </ul>
             </li>
             <li style="display:<%=reportes %>; "><a href='#'><span>Reportes</span></a></li>
-            <li style="display: <%=close%>;"><% out.print(cerrar); %></li>
+            <li style="display: <%=close%>;" class="pull-right"><% out.print(cerrar); %></li>
         </ul>
     </div>
-</div>
+
 <!--Fin de menú-->

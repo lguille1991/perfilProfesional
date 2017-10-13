@@ -52,7 +52,7 @@ public class ProcesarCurso extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("index.jsp");
+            request.getRequestDispatcher("perfil.jsp").forward(request, response);
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

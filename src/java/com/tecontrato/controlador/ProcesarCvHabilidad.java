@@ -32,10 +32,12 @@ public class ProcesarCvHabilidad extends HttpServlet {
         
         try {
             
+            int txtIdRol = Integer.parseInt(request.getParameter("txtIdRol"));
             cvh.setCurriculum(new Curriculum(Integer.parseInt(request.getParameter("txtIdCurriculum"))));
-            cvh.setHabilidad(new Habilidad(Integer.parseInt(request.getParameter("txtIdHabilidad"))));
-            cvh.setValoracion(Integer.parseInt(request.getParameter("txtValoracion")));
-            cvh.setNivel(new Nivel(Integer.parseInt(request.getParameter("txtIdNivel"))));
+            cvh.setHabilidad(new Habilidad(Integer.parseInt(request.getParameter("cmbHabilidad"))));
+            //cvh.setValoracion(Integer.parseInt(request.getParameter("txtValoracion"))); 
+            //Se utilizara solo para cuando otro usuario le de una valoracion
+            cvh.setNivel(new Nivel(Integer.parseInt(request.getParameter("nivel"))));
             
             if(request.getParameter("btnGuardar")!=null)
             {
@@ -52,7 +54,7 @@ public class ProcesarCvHabilidad extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("index.jsp");
+            request.getRequestDispatcher("perfil.jsp").forward(request, response);
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

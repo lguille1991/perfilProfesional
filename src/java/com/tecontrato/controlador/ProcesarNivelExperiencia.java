@@ -2,6 +2,7 @@
 package com.tecontrato.controlador;
 
 import com.tecontrato.modelo.CrudNivelExperiencia;
+import com.tecontrato.modelo.Curriculum;
 import com.tecontrato.modelo.NivelExperiencia;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,13 +26,14 @@ public class ProcesarNivelExperiencia extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         NivelExperiencia nexp = new NivelExperiencia();
+        Curriculum cv = new Curriculum();
         CrudNivelExperiencia crne = new CrudNivelExperiencia();
         String respuesta = null;
         
         try {
             
-            nexp.setIdNivelExperiencia(Integer.parseInt(request.getParameter("txtIdNivelExperiencia")));
-            nexp.setNombreNivelExperiencia(request.getParameter("txtNombreNivelExperiencia"));
+            cv.setIdCurriculum(Integer.parseInt(request.getParameter("txtIdCurriculum")));
+            cv.setNivelExperiencia(new NivelExperiencia(Integer.parseInt(request.getParameter("cmbNivelExperiencia"))));
             
             if(request.getParameter("btnGuardar")!=null)
             {
@@ -39,7 +41,7 @@ public class ProcesarNivelExperiencia extends HttpServlet {
                 respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
-                crne.modificarNivelExperiencia(nexp);
+                crne.modificarNivelExperiencia(cv);
                 respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro modificado de forma exitosa.</div>";
             }else if(request.getParameter("btnEliminar")!=null)
             {
@@ -48,7 +50,7 @@ public class ProcesarNivelExperiencia extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("index.jsp");
+            request.getRequestDispatcher("perfil.jsp").forward(request, response);
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

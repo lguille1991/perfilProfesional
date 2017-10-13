@@ -2,6 +2,7 @@ package com.tecontrato.controlador;
 
 import com.tecontrato.modelo.Candidato;
 import com.tecontrato.modelo.CrudCandidato;
+import com.tecontrato.modelo.CrudCurriculum;
 import com.tecontrato.modelo.Departamento;
 import com.tecontrato.modelo.Genero;
 import java.io.IOException;
@@ -26,10 +27,11 @@ public class ProcesarCandidato extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        
+        CrudCurriculum ccv = new CrudCurriculum();
         Candidato can = new Candidato();
         CrudCandidato crca = new CrudCandidato();
         String respuesta = null;
+    
         try {
             can.setIdCandidato(Integer.parseInt(request.getParameter("txtCodigo")));
             can.setDepto(new Departamento(Integer.parseInt(request.getParameter("cmbDepto"))));
@@ -48,7 +50,9 @@ public class ProcesarCandidato extends HttpServlet {
             {
                 can.setIdCandidato(Integer.parseInt(request.getParameter("txtCodigo")));
                 crca.insertarCandidato(can);
-                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong> Registro ingresado de forma exitosa.</div>";
+                //crear curriculum automaticamente
+                ccv.insertarCurriculum();
+                respuesta="<div class='alert alert-success alert-dismissable'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong style='color: black;'>¡Éxito!</strong>Comprueba tu usuario iniciando sesión</div>";
             }else if(request.getParameter("btnModificar")!=null)
             {
                 can.setIdCandidato(Integer.parseInt(request.getParameter("txtCodigo")));

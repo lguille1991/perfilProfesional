@@ -52,7 +52,7 @@ public class CrudEducacion extends Conexion{
             pre.setString(2, edu.getEspecialidad());
             pre.setInt(3, edu.getAnioFinalizacion());  
             pre.setInt(4, edu.getCurriculum().getIdCurriculum());
-            pre.setString(5, edu.getEspecialidad());
+            
             
             pre.executeUpdate(); 
             
@@ -97,10 +97,7 @@ public class CrudEducacion extends Conexion{
             PreparedStatement pre = conexion.prepareCall(sql);
             res = pre.executeQuery();
             while(res.next())
-            {
-                
-                
-                
+            {     
                 Curriculum cv = new Curriculum();
                 cv.setIdCurriculum(res.getInt("idcurriculum"));
                 
@@ -114,6 +111,32 @@ public class CrudEducacion extends Conexion{
         return lst;
     }  
     
-    
-    
+    public List<Educacion>mostrarEducacion(int idCurriculum) throws Exception
+    {
+        Conexion db = new Conexion();
+        Connection conexion = null;
+        ResultSet res;
+        List<Educacion>lst= new ArrayList();
+        try {
+            conexion = db.getConnection();
+            String sql="select * from educacion where idcurriculum=?";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            pre.setInt(1, idCurriculum);
+            res = pre.executeQuery();
+            while(res.next())
+            {
+
+                Curriculum cv = new Curriculum();
+                cv.setIdCurriculum(res.getInt("idcurriculum"));
+                
+                Educacion edu = new Educacion( cv, res.getString("institucion"),res.getString("especialidad"),res.getInt("aniofinalizacion"));
+                lst.add(edu);
+                
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return lst;
+    }  
+  
 }

@@ -20,12 +20,13 @@ public class CrudCvHabilidad extends Conexion{
         try 
         {
             conexion = db.getConnection();
-            String sql="insert into cvhabilidad(idcurriculum,valoracion,idnivel) values(?,?,?) where idhabilidad=?";
+            String sql="insert into cvhabilidad(idcurriculum,idhabilidad,valoracion,idnivel) values(?,?,0,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, cvh.getCurriculum().getIdCurriculum());
-            pre.setInt(2, cvh.getValoracion());
+            pre.setInt(2, cvh.getHabilidad().getIdHabilidad());
             pre.setInt(3, cvh.getNivel().getIdNivel());
-            pre.setInt(4, cvh.getHabilidad().getIdHabilidad());
+            
+
             pre.executeUpdate();
         } 
         catch (Exception e) 
@@ -111,6 +112,48 @@ public class CrudCvHabilidad extends Conexion{
         }
         return lst;
     }
+    public List<CvHabilidad>mostrarCvHabilidad(int idCurriculum) throws Exception
+    {
+        Conexion db=new Conexion();
+        Connection conexion =null;
+        ResultSet res;
+        List<CvHabilidad>lst=new ArrayList();
+        try 
+        {
+            conexion = db.getConnection();
+            String sql="select curriculum.idcurriculum, habilidad.idhabilidad, habilidad.nombrehabilidad, "
+                    + "valoracion, nivel.idnivel, nivel.nivel from cvhabilidad "
+                    + "inner join curriculum on cvhabilidad.idcurriculum=curriculum.idcurriculum "
+                    + "inner join habilidad on cvhabilidad.idhabilidad=habilidad.idhabilidad "
+                    + "inner join nivel on cvhabilidad.idnivel=nivel.idnivel where curriculum.idcurriculum=?";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            pre.setInt(1, idCurriculum);
+            res=pre.executeQuery();
+            while(res.next())
+            {
+                Curriculum cv=new Curriculum();
+                cv.setIdCurriculum(res.getInt("idcurriculum"));
+                
+                Habilidad ha=new Habilidad();
+                ha.setIdHabilidad(res.getInt("idhabilidad"));
+                ha.setNombreHabilidad(res.getString("nombrehabilidad"));
+                
+                Nivel ni=new Nivel();
+                ni.setIdNivel(res.getInt("idnivel"));
+                ni.setNivel(res.getString("nivel"));
+                
+                CvHabilidad cvh=new CvHabilidad(cv,ha,res.getInt("valoracion"),ni);
+                lst.add(cvh);
+            }
+        } 
+        catch (Exception e) 
+        {
+            throw e;
+        }
+        return lst;
+    }
+   
+    
     
     public List<Nivel>listaNivel() throws Exception
     {

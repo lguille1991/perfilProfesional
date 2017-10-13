@@ -32,7 +32,7 @@ public class ProcesarExperienciaLaboral extends HttpServlet {
         try {
             
             exp.setCurriculum(new Curriculum(Integer.parseInt(request.getParameter("txtIdCurriculum"))));
-            exp.setNombreEmpresa(request.getParameter("txtNombreEmpresa"));
+            exp.setNombreEmpresa(request.getParameter("txtEmpresa"));
             exp.setPuesto(request.getParameter("txtPuesto"));
             exp.setFechaInicio(request.getParameter("txtFechaInicio"));
             exp.setFechaFin(request.getParameter("txtFechaFin"));
@@ -52,7 +52,7 @@ public class ProcesarExperienciaLaboral extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("index.jsp");
+            request.getRequestDispatcher("perfil.jsp").forward(request, response);
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }

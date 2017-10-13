@@ -1,5 +1,6 @@
 package com.tecontrato.controlador;
 
+import com.tecontrato.modelo.CrudCurriculum;
 import com.tecontrato.modelo.CrudUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,8 +26,9 @@ public class LoginController extends HttpServlet {
         String usuario  = request.getParameter("user");
         String password = request.getParameter("pass");
         CrudUsuario cu  = new CrudUsuario();
+       
         int rol=0;
-        
+       
         
             if(cu.autenticarUsuario(usuario,password)==1){  
                 HttpSession session = request.getSession(true); // reuse existing												// or create one

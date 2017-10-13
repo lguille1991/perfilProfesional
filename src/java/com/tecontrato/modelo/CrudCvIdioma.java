@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class CrudCvIdioma extends Conexion{
     
-    public void insertarCvIdioma(CvIdioma cvi) throws Exception
+   public void insertarCvIdioma(CvIdioma cvi) throws Exception
     {
         Conexion db = new Conexion();
         Connection conexion = null;
         try 
         {
             conexion = db.getConnection();
-            String sql="insert into cvidioma(idcurriculum,ididioma,idnivel) values(?,?,?)";
+            String sql="insert into cvidioma(idcurriculum,idnivel,ididioma) values(?,?,?)";
             PreparedStatement pre = conexion.prepareStatement(sql);
             pre.setInt(1, cvi.getCurriculum().getIdCurriculum());
             pre.setInt(2, cvi.getNivel().getIdNivel());
@@ -134,6 +134,45 @@ public class CrudCvIdioma extends Conexion{
                 ni.setNivel(res.getString("nivel"));
 
                 lst.add(ni);
+            }
+        } 
+        catch (Exception e) 
+        {
+            throw e;
+        }
+        return lst;
+    }
+    public List<CvIdioma>mostrarCvIdioma(int idCurriculum) throws Exception
+    {
+        Conexion db=new Conexion();
+        Connection conexion =null;
+        ResultSet res;
+        List<CvIdioma>lst=new ArrayList();
+        try 
+        {
+            conexion = db.getConnection();
+            String sql="select curriculum.idcurriculum, idioma.ididioma, idioma.nombreidioma, nivel.idnivel, nivel.nivel  "
+                    + "from cvidioma inner join curriculum on cvidioma.idcurriculum=curriculum.idcurriculum "
+                    + "inner join idioma on cvidioma.ididioma=idioma.ididioma "
+                    + "inner join nivel on cvidioma.idnivel=nivel.idnivel  where curriculum.idcurriculum=?";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            pre.setInt(1, idCurriculum);
+            res=pre.executeQuery();
+            while(res.next())
+            {
+                Curriculum cv=new Curriculum();
+                cv.setIdCurriculum(res.getInt("idcurriculum"));
+                
+                Idioma idi=new Idioma();
+                idi.setIdIdioma(res.getInt("ididioma"));
+                idi.setNombreIdioma(res.getString("nombreidioma"));
+                
+                Nivel ni=new Nivel();
+                ni.setIdNivel(res.getInt("idnivel"));
+                ni.setNivel(res.getString("nivel"));
+                
+                CvIdioma cvi=new CvIdioma(cv,idi,ni);
+                lst.add(cvi);
             }
         } 
         catch (Exception e) 

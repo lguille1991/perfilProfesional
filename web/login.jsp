@@ -31,11 +31,12 @@
         </div> 
 
             <div class="col-md-4" ></div>  
-            <div id="msj" class="col-md-4" style="margin-top: 20px;" >${message}</div>  
+              
             <div class="col-md-4" ></div>  
                 <div class="row main">
                     <div class="main-login main-center" style="margin-top: 60px;">  
                     <h3><strong>INICIAR SESIÓN</strong></h3>
+                    <div id="msj" class="col-md-12" style="margin-top: 20px;" >${message}</div>
                         <form action="logincontroller" class="" method="post"  >
                             <div class="form-group">
                                 <label for="username" class="cols-sm-2 control-label">Usuario</label>

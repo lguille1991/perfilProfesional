@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CrudCurso extends Conexion {
     
-    public void insertarCurso(Curso cur) throws Exception
+   public void insertarCurso(Curso cur) throws Exception
     {
         
         Conexion db = new Conexion();
@@ -27,6 +27,7 @@ public class CrudCurso extends Conexion {
             pre.setString(1, cur.getTitulo());
             pre.setString(2, cur.getInstitucion());
             pre.setInt(3, cur.getAnioFinalizacion());
+            pre.setInt(4, cur.getCurriculum().getIdCurriculum());
             
             pre.executeUpdate(); 
             
@@ -112,6 +113,35 @@ public class CrudCurso extends Conexion {
         }
         return lst;
     }
-    
+    public List<Curso>mostrarCurso(int idCurriculum) throws Exception
+    {
+        Conexion db=new Conexion();
+        Connection conexion =null;
+        ResultSet res;
+        List<Curso>lst=new ArrayList();
+        try 
+        {
+            conexion = db.getConnection();
+            String sql="select titulo, institucion,aniofinalizacion, curriculum.idcurriculum from curso"
+                       +" inner join curriculum on curso.idcurriculum=curriculum.idcurriculum "
+                       + " where curriculum.idcurriculum=?";
+            PreparedStatement pre = conexion.prepareCall(sql);
+            pre.setInt(1, idCurriculum);
+            res=pre.executeQuery();
+            while(res.next())
+            {
+                Curriculum cv = new Curriculum();
+                cv.setIdCurriculum(res.getInt("idcurriculum"));
+                
+                Curso cur = new Curso(res.getString("titulo"),res.getString("institucion"),res.getInt("aniofinalizacion"),cv);
+                lst.add(cur);   
+            }
+        } 
+        catch (Exception e) 
+        {
+            throw e;
+        }
+        return lst;
+    }
     
 }

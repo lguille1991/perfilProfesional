@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class CrudNivelExperiencia extends Conexion{
     
-    public void insertarNivelExperiencia(NivelExperiencia ne) throws Exception
+        public void insertarNivelExperiencia(NivelExperiencia ne) throws Exception
     {
         Conexion db = new Conexion();
         Connection conexion = null;
@@ -31,17 +31,18 @@ public class CrudNivelExperiencia extends Conexion{
         }
     }
     
-    public void modificarNivelExperiencia(NivelExperiencia ne) throws Exception
+    public void modificarNivelExperiencia(Curriculum cv) throws Exception
     {
         Conexion db = new Conexion();
         Connection conexion = null;
         try 
         {
             conexion = db.getConnection();
-            String sql="update nivelexperiencia set nombrenivelexperiencia=? where idnivelexperiencia=?";
+            String sql="update  curriculum set idnivelexperiencia=? where idcurriculum=?";
             PreparedStatement pre = conexion.prepareStatement(sql);
-            pre.setString(1, ne.getNombreNivelExperiencia());
-            pre.setInt(2, ne.getIdNivelExperiencia());
+            pre.setInt(1, cv.getNivelExperiencia().getIdNivelExperiencia());
+            pre.setInt(2, cv.getIdCurriculum());
+            
             pre.executeUpdate();
         } 
         catch (Exception e) 

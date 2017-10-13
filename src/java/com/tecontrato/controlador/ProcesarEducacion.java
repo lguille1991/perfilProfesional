@@ -21,15 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProcesarEducacion extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,7 +34,7 @@ public class ProcesarEducacion extends HttpServlet {
         try {
             
             
-            edu.setCurriculum(new Curriculum(Integer.parseInt(request.getParameter("txtCodigo"))));
+            edu.setCurriculum(new Curriculum(Integer.parseInt(request.getParameter("txtIdCurriculum"))));
             edu.setInstitucion(request.getParameter("txtInstitucion"));
             edu.setEspecialidad(request.getParameter("txtEspecialidad"));
             edu.setAnioFinalizacion(Integer.parseInt(request.getParameter("txtAnioFinalizacion")));
@@ -64,7 +55,7 @@ public class ProcesarEducacion extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            request.getRequestDispatcher("educacion.jsp").forward(request, response);
+            request.getRequestDispatcher("perfil.jsp").forward(request, response);
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }
