@@ -49,7 +49,7 @@ public class ProcesarCargo extends HttpServlet {
             }
             
             request.setAttribute("respuesta", respuesta);
-            response.sendRedirect("cargo.jsp");
+            request.getRequestDispatcher("cargo.jsp").forward(request, response);
      } catch (Exception e) {
          request.setAttribute("ERROR", e.toString());
      }
