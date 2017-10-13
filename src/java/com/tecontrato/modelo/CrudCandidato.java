@@ -115,7 +115,7 @@ public class CrudCandidato extends Conexion {
                 gen.setIdGenero(res.getInt("idgenero"));
                 gen.setGenero(res.getString("genero"));
                 
-                Candidato can = new Candidato( res.getInt("idcandidato"),depto,gen, res.getString("nombre"),res.getString("nacionalidad"), res.getString("fechanacimiento"),res.getString("direccion"), res.getString("foto"));
+                Candidato can = new Candidato( res.getInt("idcandidato"),depto,gen, res.getString("nombre"),res.getString("nacionalidad"),Utilidades.invertirFechas(res.getString("fechanacimiento"),"yyyy-mm-dd","dd-mm-yyyy"),res.getString("direccion"), res.getString("foto"));
                 lst.add(can);
                 
                 

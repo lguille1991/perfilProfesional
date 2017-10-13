@@ -21,9 +21,9 @@ public class Utilidades {
         try {
             //System.out.println("fecha INI:"+fechaStr+", formato:"+formatFrom);
             if (fechaStr != null && !fechaStr.equals("")) {
-                formaterFrom = new SimpleDateFormat(formatFrom != null ? formatFrom : "dd/MM/yyyy");
+                formaterFrom = new SimpleDateFormat(formatFrom != null ? formatFrom : "yyyy/mm/dd");
                 fechaDate = formaterFrom.parse(fechaStr);
-                formaterTo = new SimpleDateFormat(formatTo != null ? formatTo : "yyyy-MM-dd");
+                formaterTo = new SimpleDateFormat(formatTo != null ? formatTo : "dd-mm-yyyy");
                 resp = formaterTo.format(fechaDate);
             }
         } catch (Exception e) {

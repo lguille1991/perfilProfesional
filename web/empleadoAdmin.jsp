@@ -1,5 +1,5 @@
 <%-- 
-    Document   : candidatoAdmin
+    Document   : empleado
     Created on : 10-10-2017, 03:53:35 PM
     Author     : Kevin López
 --%>
@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="plantilla/libs.jsp"/>
-        <title>JSP Page</title>
+        <title>Empleado</title>
         <script>
         jQuery(function(){
             $('.al-date').datepicker({
@@ -32,16 +32,14 @@
               $('.phone').mask('(000)0000-0000');
           }); 
           
-          function cargar(codigo, nombreC, gen, depto, nac, fechaNac, direc, foto)
+          function cargar(codigo, nombreC, dir, tel, fechaNac, foto)
           {
-               $('#txtCodigo').val(codigo);
-               $('#txtNombreCandidato').val(nombreC);
-               document.frmCandidatoAdmin.genero.value=gen;
-               document.frmCandidatoAdmin.cmbDepto.value=depto;
-               $('#txtNacionalidad').val(nac);
+               $('#txtIdEmpleado').val(codigo);
+               $('#txtNombreEmpleado').val(nombreC);
+               $('#txtDireccion').val(dir);
+               $('#txtTelefono').val(tel);
                $('#txtFechaNacimiento').val(fechaNac);
-               $('#txtDireccion').val(direc);
-               document.frmCandidatoAdmin.txtFoto.value=foto;
+               document.frmEmpleado.txtFoto.value=foto;
           }
           
           $(document).ready(function(){
@@ -56,7 +54,7 @@
     </head>
     <body class="bodyFormulario" id="home">
         <%
-            CrudCandidato ccan=new CrudCandidato(); 
+            CrudEmpleado cemp=new CrudEmpleado(); 
             HttpSession sess = request.getSession(true); //use false to use the existing session
             String idu = (String) sess.getAttribute("txtIdUsuario");
             if (session.getAttribute("user") != null){
@@ -68,7 +66,7 @@
             <jsp:include page="plantilla/menu.jsp" />
         </div>
     <div class="row">   
-        <div class="modal fade" id="habilidad" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+        <div class="modal fade" id="empleado" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
         <div class="modal-dialog"  id="modal-dialog">
             <div class="panel panel-primary" id="panel-primary">
                 <div class="panel-heading" id="panel-heading" >
@@ -76,50 +74,30 @@
                     <h4 class="panel-title" id="contactLabel">TeContrato.com</h4>
                 </div>
                  <!--Formulario-->
-                 <form action="procesarCandidato" method="GET" name="frmCandidatoAdmin" >
+                 <form action="procesarEmpleado" method="GET" name="frmEmpleado" >
                 <div class="modal-body" id="modalBody">               
                     <div class="main-center">
-                        <h3><strong>CANDIDATO</strong></h3>
-                                <input type="hidden" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" readonly="true" value="<%=idu %>"/>
+                        <h3><strong>EMPLEADO</strong></h3>
+                                <input type="hidden" class="form-control" name="txtIdEmpleado" id="txtIdEmpleado"  placeholder="Código" readonly="true" value="<%=idu %>"/>
                                 <!--Pendiente-->
                                 <input type="hidden" class="form-control" name="txtIdRol" id="txtIdRol"  placeholder="" readonly="true" value="1"/>
                             <br>
-                            <label for="txtNombre" class="cols-sm-2 control-label">Nombre</label>
+                            <label for="txtNombreEmpleado" class="cols-sm-2 control-label">Nombre</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="txtNombreCandidato" id="txtNombreCandidato"  placeholder="Nombre del Candidato"/>
+                                <input type="text" class="form-control" name="txtNombreEmpleado" id="txtNombreEmpleado"  placeholder="Nombre del Empleado"/>
                             </div>
                             <br>
-                            <label for="txtGenero" class="cols-sm-2 control-label">Genero</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-venus-mars" aria-hidden="true"></i></span>
-                                <%
-                                    List<Genero> lsg=ccan.listaGenero();
-                                    for(Genero ge:lsg){
-                                %>
-                                <input type="radio" id="<%=ge.getIdGenero() %>" name="genero" required="true" checked="" value="<%=ge.getIdGenero() %>" >
-                                <label for="<%=ge.getIdGenero() %>"><%=ge.getGenero() %></label>
-                                <%}%>
-                            </div>
-                            <br>
-                            <label for="txtDepartamento" class="cols-sm-2 control-label">Departamento</label>
-                            <div class="input-group" id="select-dark">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe" aria-hidden="true"></i></span>
-                                <select name="cmbDepto" id="dark" required="true" class="form-control">
-                                    <option value="">.::Seleccione Departamento::.</option>
-                                    <%
-                                        List<Departamento>ls=ccan.listaDepto();
-                                        for(Departamento depto:ls){
-                                    %>
-                                    <option value="<%=depto.getIdDepto() %>"><%=depto.getNombreDepto() %></option>
-                                    <%}%>
-                                </select>
-                            </div>
-                            <br>
-                            <label for="txtNacionalidad" class="cols-sm-2 control-label">Nacionalidad</label>
+                            <label for="txtDireccion" class="cols-sm-2 control-label">Dirección</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-map" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="txtNacionalidad" id="txtNacionalidad"  placeholder="Nacionalidad" required="true"/>
+                                <input type="text" class="form-control" name="txtDireccion" id="txtDireccion"  placeholder="Dirección" required="true"/>
+                            </div>
+                            <br>
+                            <label for="txtDireccion" class="cols-sm-2 control-label">Teléfono</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono"  placeholder="Teléfono" required="true"/>
                             </div>
                             <br>
                             <label for="fechaNacimiento" class="cols-sm-2 control-label">Fecha Nacimiento</label>
@@ -127,12 +105,6 @@
                                         <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control" name="txtFechaNacimiento" id="txtFechaNacimiento" placeholder="Fecha Nacimiento" required="true" readonly="" style="color: black;" />
                                 </div>
-                            <br>
-                            <label for="descripcion" class="cols-sm-2 control-label">Dirección</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i></span>
-                                <textarea class="form-control" rows="2" name="txtDireccion" id="txtDireccion" placeholder="Direccion..." required="true"></textarea>
-                            </div>
                             <br>
                             <label for="foto" class="cols-sm-2 control-label">Foto</label>
                             <div class="input-group image-preview" style="text-align: right;" >
@@ -178,40 +150,36 @@
 
     <div class="row main" style="margin-top: 25px;">
     <div class=" main-tbl">
-         <h3><strong>CANDIDATO</strong></h3>
+         <h3><strong>EMPLEADO</strong></h3>
         <!--Tabla para mostrar registros-->  
         <div class="row ">
-            <div class="col-md-10"><input type="text" name="search"  id="buscar" placeholder="Busqueda"></div><div class="col-md-2"> <a id="buttontbl" class="btn btn-primary pull-right" onclick="cargar()"  href="" data-toggle="modal" data-target="#habilidad">Nuevo</a></div>
+            <div class="col-md-10"><input type="text" name="search"  id="buscar" placeholder="Busqueda"></div><div class="col-md-2"> <a id="buttontbl" class="btn btn-primary pull-right" onclick=""  href="usuarioEmpleado.jsp" data-toggle="" data-target="">Nuevo</a></div>
         </div>
         <table class="table active " id="tblMostrar" >
             <thead >
             <tr id="headertbl">
                <th>Código</th>
-               <th>Nombre Candidato</th>
-               <th>Genero</th>
-               <th>Departamento</th>
-               <th>Nacionalidad</th>
+               <th>Nombre Empleado</th>
+               <th>Dirección</th>
+               <th>Teléfono</th>
                <th>Fecha Nacionalidad</th>
-               <th>Direccion</th>
                <th>Foto</th>
                <th style="width: 10%;">Acción</th>
              </tr>
            </thead>
             <%
-             List<Candidato> ls2 = ccan.mostrarCandidato();
-             for(Candidato can:ls2){
+             List<Empleado> ls2 = cemp.mostrarEmpleado();
+             for(Empleado emp:ls2){
            %>
            <tr>
-               <td><%= can.getIdCandidato() %> </td>
-               <td><%= can.getNombre() %></td>
-               <td><%= can.getGenero().getGenero() %></td>
-               <td><%= can.getDepto().getNombreDepto() %></td>
-               <td><%= can.getNacionalidad() %></td>
-               <td><%= can.getFechaNacimiento() %></td>
-               <td><%= can.getDireccion() %></td>
-               <td><%= can.getFoto() %></td>
+               <td><%= emp.getIdEmpleado() %> </td>
+               <td><%= emp.getNombreEmpleado() %></td>
+               <td><%= emp.getDireccion() %></td>
+               <td><%= emp.getTelefono() %></td>
+               <td><%= emp.getFechaNacimiento() %></td>
+               <td><%= emp.getFoto() %></td>
                <td id="colAccion" style="width: 50px;">
-                   <a class="btn btn-primary" id="button" href="" data-toggle="modal" data-target="#habilidad" onclick="cargar(<%=can.getIdCandidato() %>,'<%=can.getNombre() %>','<%=can.getGenero().getIdGenero() %>','<%=can.getDepto().getIdDepto() %>','<%=can.getNacionalidad() %>','<%=can.getFechaNacimiento() %>','<%=can.getDireccion() %>','<%=can.getFoto() %>')" ><span class="glyphicon glyphicon-plus-sign"></span></a>
+                   <a class="btn btn-primary" id="button" href="" data-toggle="modal" data-target="#empleado" onclick="cargar(<%=emp.getIdEmpleado() %>,'<%=emp.getNombreEmpleado()%>','<%=emp.getDireccion() %>','<%=emp.getTelefono() %>','<%=emp.getFechaNacimiento() %>','<%=emp.getFoto() %>')" ><span class="glyphicon glyphicon-plus-sign"></span></a>
                </td>
            </tr>
            <% } %>

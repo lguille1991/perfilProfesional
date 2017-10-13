@@ -88,6 +88,10 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>com.tecontrato.controlador.LogoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcesarEmpleado</servlet-name>
+        <servlet-class>com.tecontrato.controlador.ProcesarEmpleado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcesarHabilidad</servlet-name>
         <url-pattern>/procesarHabilidad</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/logoutcontroller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarEmpleado</servlet-name>
+        <url-pattern>/procesarEmpleado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

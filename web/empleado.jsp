@@ -1,5 +1,5 @@
 <%-- 
-    Document   : candidato
+    Document   : empleado
     Created on : 10-06-2017, 10:03:44 PM
     Author     : Kevin López
 --%>
@@ -15,16 +15,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                
         <jsp:include page="plantilla/libs.jsp"/>
-        <title>Candidato</title>
+        <title>Empleado</title>
     </head>
     <script>
         jQuery(function(){
             $('.al-date').datepicker({
-                format: 'yyyy-mm-dd',
+                format: 'dd-mm-yyyy',
                 language: 'es',
                 autoclose: true,
-                startDate: "1927/01/01",
-                endDate: "2100/12/31",
+                startDate: "01/01/1927",
+                endDate: "31/12/2100",
                 startView: 2,
                 todayBtn: "linked"
             });
@@ -48,15 +48,15 @@
         </div>
                 <div class="row main">
                     <div class="main-login main-center" style="margin-top: 25px;">
-                    <h2>Candidato</h2>
-                            <form class="" method="get" action="procesarCandidato">
+                    <h2>Empleado</h2>
+                            <form class="" method="get" action="procesarEmpleado">
                                     
                                     <div class="form-group">
                                             <label for="nombre" class="cols-sm-2 control-label">Nombre</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtNombreCandidato" id="txtNombreCandidato"  placeholder="Nombre" required="true" autofocus="true" />
+                                                            <input type="text" class="form-control" name="txtNombreEmpleado" id="txtNombreEmpleado"  placeholder="Nombre" required="true" autofocus="true" />
                                                     </div>
                                             </div>
                                     </div>
@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                        <input type="hidden" class="form-control" name="txtCodigo" id="txtCodigo"  placeholder="Código" required="true" value="<%=idu %>"/>
+                                                        <input type="hidden" class="form-control" name="txtIdEmpleado" id="txtIdEmpleado"  placeholder="Código" required="true" value="<%=idu %>"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -72,51 +72,28 @@
                                     <div class="form-group">
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                        <input type="hidden" class="form-control" name="txtIdRol" id="txtIdRol"  placeholder="Código" required="true" value="3"/>
+                                                        <input type="hidden" class="form-control" name="txtIdRol" id="txtIdRol"  placeholder="Código" required="true" value="1"/>
                                                     </div>
                                             </div>
                                     </div>
-                                
-                                    <div class="form-group">
-                                            <label for="genero" class="cols-sm-2 control-label">Genero</label>
-                                            <div class="cols-sm-10">
-                                                    <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-venus-mars" aria-hidden="true"></i></span>
-                                                            <%
-                                                                List<Genero>ls2=ccan.listaGenero();
-                                                                for(Genero ge:ls2){
-                                                            %>
-                                                            <input type="radio" id="<%=ge.getIdGenero() %>" name="genero" required="true" value="<%=ge.getIdGenero() %>" checked>
-                                                            <label for="<%=ge.getIdGenero() %>"><%=ge.getGenero() %></label>
-                                                            <%}%>
-                                                    </div>
-                                            </div>
-                                    </div> 
-
-                                    <div class="form-group">
-                                            <label for="depto" class="cols-sm-2 control-label">Departamento</label>
-                                            <div class="cols-sm-10">
-                                                <div class="input-group" id="select-dark">
-                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-globe" aria-hidden="true"></i></span>
-                                                            <select name="cmbDepto" id="dark" required="true" class="form-control">
-                                                                <option value="">.::Seleccione Departamento::.</option>
-                                                                <%
-                                                                List<Departamento>ls=ccan.listaDepto();
-                                                                for(Departamento depto:ls){
-                                                                %>
-                                                                <option value="<%=depto.getIdDepto() %>"><%=depto.getNombreDepto() %></option>
-                                                            <%}%>
-                                                            </select>
-                                                    </div>
-                                            </div>
-                                    </div>                                                   
+                                                                                    
                                                                                                            
                                     <div class="form-group">
-                                            <label for="nacionalidad" class="cols-sm-2 control-label">Nacionalidad</label>
+                                            <label for="txtDireccion" class="cols-sm-2 control-label">Dirección</label>
                                             <div class="cols-sm-10">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-map" aria-hidden="true"></i></span>
-                                                            <input type="text" class="form-control" name="txtNacionalidad" id="txtNacionalidad"  placeholder="Nacionalidad" required="true"/>
+                                                            <input type="text" class="form-control" name="txtDireccion" id="txtDireccion"  placeholder="Dirección" required="true"/>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                                    
+                                    <div class="form-group">
+                                            <label for="txtTelefono" class="cols-sm-2 control-label">Teléfono</label>
+                                            <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                                            <input type="text" class="form-control phone" name="txtTelefono" id="txtTelefono"  placeholder="Teléfono" required="true"/>
                                                     </div>
                                             </div>
                                     </div>
@@ -129,17 +106,7 @@
                                                             <input type="text" class="form-control" name="txtFechaNacimiento" id="txtFechaNacimiento" placeholder="Fecha Nacimiento" required="true" readonly="" style="color: #000;"/>
                                                     </div>
                                             </div>
-                                    </div>                
-                                                    
-                                    <div class="form-group">
-                                            <label for="descrpcion" class="cols-sm-2 control-label">Dirección</label>
-                                            <div class="cols-sm-10">
-                                                    <div class="input-group">
-                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i></span>
-                                                            <textarea class="form-control" rows="2" name="txtDireccion" id="txtDireccion" placeholder="Direccion..." required="true"></textarea>
-                                                    </div>
-                                            </div>
-                                    </div>
+                                    </div>                                      
                                     
                                     <div class="form-group ">
                                                 <label for="foto" class="cols-sm-2 control-label">Foto</label>
