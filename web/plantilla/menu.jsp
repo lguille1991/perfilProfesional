@@ -90,8 +90,8 @@
             </li>
             <li class='has-sub' style="z-index: 1;display: <%=usuario %>;"><a href='#'><span>Usuarios</span></a>
                <ul>
-                   <li><a href='#'><span>Empleado</span></a></li>
-                  <li><a href='#'><span>Candidato</span></a></li>
+                   <li><a href='empleadoAdmin.jsp'><span>Empleado</span></a></li>
+                  <li><a href='candidatoAdmin.jsp'><span>Candidato</span></a></li>
                   <li><a href='empresaAdmin.jsp'><span>Empresa</span></a></li>
                </ul>
             </li>

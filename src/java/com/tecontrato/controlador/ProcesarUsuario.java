@@ -69,7 +69,7 @@ public class ProcesarUsuario extends HttpServlet {
                 request.getRequestDispatcher("empresa.jsp").forward(request, response);
             }
             else if(txtIdRol.equals("3")){
-                request.getRequestDispatcher("perfil.jsp").forward(request, response);
+                request.getRequestDispatcher("candidato.jsp").forward(request, response);
             }else if(txtIdRol.equals("1")){
                 request.getRequestDispatcher("empleado.jsp").forward(request, response);
             }
